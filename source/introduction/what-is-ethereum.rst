@@ -1,116 +1,85 @@
-Note that some information on this website may no longer be relevant or out-of-date. You can also refer to the `Ethereum wiki <https://github.com/ethereum/wiki>`_ for the latest information.
-
 .. _what-is-ethereum:
 
 ################################################################################
-What is Ethereum?
+以太坊是什么？
 ################################################################################
 
-Ethereum is an open blockchain platform that lets anyone build and use decentralized applications that run on blockchain technology. Like Bitcoin, no one controls or owns Ethereum – it is an open-source project built by many people around the world. But unlike the Bitcoin protocol, Ethereum was designed to be adaptable and flexible. It is easy to create new applications on the Ethereum platform, and with the `Homestead release <homestead-release>`_, it is now safe for anyone to use those applications.
+以太坊是一个全新开放的区块链平台，它允许任何人在平台中建立和使用通过区块链技术运行的去中心化应用。
+就像比特币一样，以太坊不受任何人控制，也不归任何人所有——它是一个开放源代码项目，由全球范围内的很多人共同创建。
+和比特币协议有所不同的是，以太坊的设计十分灵活，极具适应性。在以太坊平台上创立新的应用十分简便，随着Homestead的发布，任何人都可以安全地使用该平台上的应用。
 
 ================================================================================
-A next generation blockchain
+下一代区块链
 ================================================================================
 
-Blockchain technology is the technological basis of Bitcoin, first described by its mysterious author Satoshi Nakamoto in his white paper "Bitcoin: A Peer-to-Peer Electronic Cash System", published in 2008. While the use of blockchains for more general uses was already discussed in the original paper, it was not until a few years later that blockchain technology emerged as a generic term. A blockchain is a distributed computing architecture where every network node executes and records the same transactions, which are grouped into blocks. Only one block can be added at a time, and every block contains a mathematical proof that it follows in sequence from the previous block. In this way, the blockchain’s "distributed database" is kept in consensus across the whole network. Individual user interactions with the ledger (transactions) are secured by strong cryptography. Nodes that maintain and verify the network are incentivized by mathematically enforced economic incentives coded into the protocol.
+区块链技术是比特币的底层技术，这一技术第一次被描述是在中本聪2008年发表的白皮书“比特币：点对点电子现金系统”中。
+区块链技术更多的一般性用途在原书中已经有所讨论，但直到几年后，区块链技术才作为通用术语出现。
+一个区块链是一个分布式计算架构，里面的每个网络节点执行并记录相同的交易，交易被分组为区块。一次只能增加一个区块，每个区块有一个数学证明来保证新的区块与之前的区块保持先后顺序。
+这样一来，区块链的“分布式数据库”就能和整个网络保持一致。个体用户与总账的互动（交易）受到安全的密码保护。由数学执行并编码到协议中的经济激励因素刺激着维持和验证网络的节点。
 
-In Bitcoin's case the distributed database is conceived of as a table of account balances, a ledger, and transactions are transfers of the bitcoin token to facilitate trustless finance between individuals. But as bitcoin began attracting greater attention from developers and technologists, novel projects began to use the bitcoin network for purposes other than transfers of value tokens. Many of these took the form of "alt coins" - separate blockchains with cryptocurrencies of their own which improved on the original bitcoin protocol to add new features or capabilities. In late 2013, Ethereum's inventor Vitalik Buterin proposed that a single blockchain with the capability to be reprogrammed to perform any arbitrarily complex computation could subsume these many other projects.
+在比特币中，分布式数据库被设想为一个账户余额表，一个总账，交易就是通过比特币的转移以实现个体之间无需信任基础的金融活动。
+但是随着比特币吸引了越来越多开发者和技术专家的注意，新的项目开始将比特币网络用于有价代币转移之外的其他用途。
+其中很多都采用了“代币”的形式——以原始比特币协议为基础，增加了新的特征或功能，采用各自加密货币的独立区块链。
+在2013年末，以太坊的发明者Vitalik Buterin建议能够通过程序重组来运行任意复杂运算的单个区块链应该包含其他的程序。
 
-In 2014, Ethereum founders Vitalik Buterin, Gavin Wood and Jeffrey Wilcke began work on a next-generation blockchain that had the ambitions to implement a general, fully trustless smart contract platform.
-
-================================================================================
-Ethereum Virtual Machine
-================================================================================
-
-Ethereum is a programmable blockchain. Rather than give users a set of pre-defined operations (e.g. bitcoin transactions), Ethereum allows users to create their own operations of any complexity they wish. In this way, it serves as a platform for many different types of decentralized blockchain applications, including but not limited to cryptocurrencies.
-
-Ethereum in the narrow sense refers to a suite of protocols that define a platform for decentralised applications. At the heart of it is the :ref:`Ethereum Virtual Machine ("EVM") <the-EVM>`, which can execute code of arbitrary algorithmic complexity. In computer science terms, Ethereum is "Turing complete". Developers can create applications that run on the EVM using friendly programming languages modelled on existing languages like JavaScript and Python.
-
-Like any blockchain, Ethereum also includes a peer-to-peer network protocol. The Ethereum blockchain database is maintained and updated by many nodes connected to the network. Each and every node of the network runs the EVM and executes the same instructions. For this reason, Ethereum is sometimes described evocatively as a "world computer".
-
-This massive parallelisation of computing across the entire Ethereum network is not done to make computation more efficient. In fact, this process makes computation on Ethereum far slower and more expensive than on a traditional "computer". Rather, every Ethereum node runs the EVM in order to maintain consensus across the blockchain. Decentralized consensus gives Ethereum extreme levels of fault tolerance, ensures zero downtime, and makes data stored on the blockchain forever unchangeable and censorship-resistant.
-
-The Ethereum platform itself is featureless or value-agnostic. Similar to programming languages, it is up to entrepreneurs and developers to decide what it should be used for. However, it is clear that certain application types benefit more than others from Ethereum's capabilities. Specifically, ethereum is **suited for applications that automate direct interaction between peers or facilitate coordinated group action across a network**. For instance, applications for coordinating peer-to-peer marketplaces, or the automation of complex financial contracts. Bitcoin allows for individuals to exchange cash without involving any middlemen like financial institutions, banks, or governments. Ethereum’s impact may be more far-reaching. In theory, financial interactions or exchanges of any complexity could be carried out automatically and reliably using code running on Ethereum. Beyond financial applications, any environments where trust, security, and permanence are important – for instance, asset-registries, voting, governance, and the internet of things – could be massively impacted by the Ethereum platform.
+2014年，以太坊的创始人Vitalik Buterin, Gavin Wood和Jeffrey Wilcke开始研究新一代区块链，试图实现一个总体上完全无需信任基础的智能合约平台。
 
 ================================================================================
-How does Ethereum work?
+以太坊虚拟机
 ================================================================================
 
-Ethereum incorporates many features and technologies that will be familiar to users of Bitcoin, while also introducing many modifications and innovations of its own.
+以太坊是可编程的区块链。它并不是给用户一系列预先设定好的操作（例如比特币交易），而是允许用户按照自己的意愿创建复杂的操作。
+这样一来，它就可以作为多种类型去中心化区块链应用的平台，包括加密货币在内但并不仅限于此。
 
-Whereas the Bitcoin blockchain was purely a list of transactions, :ref:`Ethereum's basic unit is the account <Accounts>`. The Ethereum blockchain tracks the state of every account, and all state transitions on the Ethereum blockchain are transfers of value and information between accounts. There are two types of accounts:
+以太坊狭义上是指一系列定义去中心化应用平台的协议，:ref:`它的核心是以太坊虚拟机（“EVM”）<the-EVM>`，可以执行任意复杂算法的编码。
+在计算机科学术语中，以太坊是“图灵完备的”。开发者能够使用现有的JavaScript和Python等语言为模型的其他友好的编程语言，创建出在以太坊模拟机上运行的应用。
 
-- Externally Owned Accounts (EOAs), which are controlled by private keys
-- Contract Accounts, which are controlled by their contract code and can only be "activated" by an EOA
+和其他区块链一样，以太坊也有一个点对点网络协议。以太坊区块链数据库由众多连接到网络的节点来维护和更新。
+每个网络节点都运行着以太坊模拟机并执行相同的指令。因此，人们有时形象地称以太坊为“世界电脑”。
 
-For most users, the basic difference between these is that human users control EOAs - because they can control the private keys which give control over an EOA. Contract accounts, on the other hand, are governed by their internal code. If they are "controlled" by a human user, it is because they are *programmed* to be controlled by an EOA with a certain address, which is in turn controlled by whoever holds the private keys that control that EOA. The popular term "smart contracts" refers to code in a Contract Account – programs that execute when a transaction is sent to that account. Users can create new contracts by deploying code to the blockchain.
+这个贯穿整个以太坊网络的大规模并行运算并不是为了使运算更高效。实际上，这个过程使得在以太坊上的运算比在传统“电脑”上更慢更昂贵。
+然而，每个以太坊节点都运行着以太坊虚拟机是为了保持整个区块链的一致性。去中心化的一致使以太坊有极高的故障容错性，保证零停机，而且可以使存储在区块链上的数据保持永远不变且抗审查。
 
-Contract accounts only perform an operation when instructed to do so by an EOA. So it is not possible for a Contract account to be performing native operations like random number generation or API calls – it can do these things only if prompted by an EOA. This is because Ethereum requires nodes to be able to agree on the outcome of computation, which requires a guarantee of strictly deterministic execution.
+以太坊平台本身没有特点，没有价值性。和编程语言相似，它由企业家和开发者决定其用途。
+不过很明显，某些应用类型较之其他更能从以太坊的功能中获益。
+以太坊尤其**适合那些在点与点之间自动进行直接交互或者跨网络促进小组协调活动的应用**。
+例如，协调点对点市场的应用，或是复杂财务合约的自动化。
+比特币使个体能够不借助金融机构、银行或政府等其他中介来进行货币交换。以太坊的影响可能更为深远。
+理论上，任何复杂的金融活动或交易都能在以太坊上用编码自动且可靠地进行。
+除金融类应用外，任何对信任、安全和持久性要求较高的应用场景————比如资产注册、投票、管理和物联网————都会大规模地受到以太坊平台影响。
 
-Like in Bitcoin, users must pay small transaction fees to the network. This protects the Ethereum blockchain from frivolous or malicious computational tasks, like DDoS attacks or infinite loops. The sender of a transaction must pay for each step of the "program" they activated, including computation and memory storage.  These fees are paid in amounts of Ethereum's native value-token, ether.
+================================================================================
+以太坊如何工作？
+================================================================================
 
-These transaction fees are collected by the nodes that validate the network. These "miners" are nodes in the Ethereum network that receive, propagate, verify, and execute transactions. The miners then group the transactions – which include many updates to the "state" of accounts in the Ethereum blockchain – into what are called "blocks", and miners then compete with one another for *their* block to be the next one to be added to the blockchain. Miners are rewarded with ether for each successful block they mine. This provides the economic incentive for people to dedicate hardware and electricity to the Ethereum network.
+以太坊合并了很多对比特币用户来说十分熟悉的特征和技术，同时自己也进行了很多修正和创新。
 
-Just as in the Bitcoin network, miners are tasked with solving a complex mathematical problem in order to successfully "mine" a block. This is known as a "Proof of Work". Any computational problem that requires orders of magnitude more resources to solve algorithmically than it takes to verify the solution is a good candidate for proof of work. In order to discourage centralisation due to the use of specialised hardware (e.g. [ASICs](https://en.bitcoin.it/wiki/ASIC), ), as has occurred in the Bitcoin network, Ethereum chose a memory-hard computational problem. If the problem requires memory as well as CPU, the ideal hardware is in fact the general computer. This makes Ethereum's Proof of Work ASIC-resistant, allowing a more decentralized distribution of security than blockchains whose mining is dominated by specialized hardware, like Bitcoin.
+比特币区块链纯粹是一个关于交易的列表，:ref:`而以太坊的基础单元是账户<Accounts>`。
+以太坊区块链跟踪每个账户的状态，所有以太坊区块链上的状态转换都是账户之间价值和信息的转移。账户分为两类：
 
+- 外部账户（EOAs），由私钥控制
+- 合约账户，由它们的合约编码控制，只能由外部账户（EOA）“激活”
 
-Learn about Ethereum
-==============================
+于大部分用户来说，两者基本的区别在于外部账户是由人类用户掌控————因为他们能够控制私钥，进而控制外部账户。
+而合约账户则是由内部编码管控。如果他们是被人类用户“控制”的，那也是因为程序设定它们被具有特定地址的外部账户控制，进而被持有私钥控制外部账户的人控制着。
+“智能合约”这个流行的术语指的是在合约账户中编码————交易被发送给该账户时所运行的程序。
+用户可以通过在区块链中部署编码来创建新的合约。
 
-[to be extended]
+只有当外部账户发出指令时，合约账户才会执行相应的操作。
+所以合约账户不可能自发地执行诸如任意数码生成或应用程序界面调用等操作—只有受外部账户提示时，它才会做这些事。
+这是因为以太坊要求节点能够与运算结果保持一致，这就要求保证严格确定执行。
 
-PR videos with some pathos:
----------------------------------
+和比特币一样，以太坊用户必须向网络支付少量交易费用。
+这可以使以太坊区块链免受无关紧要或恶意的运算任务干扰，比如分布式拒绝服务（DDoS）攻击或无限循环。
+交易的发送者必须在激活的“程序”每一步付款，包括运算和记忆储存。费用通过以太坊自有的有价代币，以太币的形式支付。
 
-* `Ethereum: the World Computer <https://www.youtube.com/watch?v=j23HnORQXvs>`_
-* `Ethereum -- your turn <https://vimeo.com/88959651>`_
+交易费用由节点收集，节点使网络生效。这些“矿工”就是以太坊网络中收集、传播、确认和执行交易的节点。
+矿工们将交易分组——包括许多以太坊区块链中账户“状态”的更新——分成的组被称为“区块”，矿工们会互相竞争，以使他们的区块可以添加到下一个区块链上。
+矿工们每挖到一个成功的区块就会得到以太币奖励。这就为人们带来了经济激励，促使人们为以太坊网络贡献硬件和电力。
 
+和比特币网络一样，矿工们有解决复杂数学问题的任务以便成功地“挖”到区块。
+这被称为“工作量证明”。一个运算问题，如果在算法上解决，比验证解决方法需要更多数量级的资源，那么它就是工作证明的极佳选择。
+为防止比特币网络中已经发生的，专门硬件（例如特定用途集成电路）造成的中心化现象，以太坊选择了难以存储的运算问题。
+如果问题需要存储器和CPU，事实上理想的硬件是普通的电脑。
+这就使以太坊的工作量证明具有抗特定用途集成电路性，和比特币这种由专门硬件控制挖矿的区块链相比，能够带来更加去中心化的安全分布。
 
-Blockchain and Ethereum 101
-----------------------------------
-
-* `Explain bitcoin like I'm five <https://medium.com/@nik5ter/explain-bitcoin-like-im-five-73b4257ac833>`_ - an excellent introduction to blockchain technology and bitcoin to the mildly techsavvy layperson.
-* https://medium.com/@creole/7-a-simple-view-of-ethereum-e276f76c980b
-* https://blog.chain.com/explaining-ethereum-fd043c7d602e
-
-* `Explain Ethereum to non-technical people Q&A on stackexchange <http://ethereum.stackexchange.com/questions/45/how-would-i-explain-ethereum-to-a-non-technical-friend>`_
-* Reddit threads on ELI5-ing Ethereum:
-
-`[1] <https://www.reddit.com/r/ethereum/comments/43brik/explaining_ethereum_to_friends/>`_
-`[2] <https://www.reddit.com/r/ethereum/comments/3c132d/eli5_what_you_guys_do_here/>`_
-`[3] <https://www.reddit.com/r/ethereum/comments/1vvz13/eli5_ethereum/>`_
-`[4] <https://www.reddit.com/r/ethereum/comments/1vb1gc/is_ethereum_an_alt_coin_can_anyone_eli5/>`_
-`[5] <https://www.reddit.com/r/ethereum/comments/4279dh/eli5_what_exactly_is_ethereum/>`_
-`[6] <https://www.reddit.com/r/ethereum/comments/2hl10p/eli5_ethereum/>`_
-`[7] <https://www.reddit.com/r/ethereum/comments/41y8by/the_best_way_i_can_eli5_ethereum_to_someone/>`_
-`[8] <https://www.reddit.com/r/ethereum/comments/44b69e/i_dont_understand_the_technology/>`_
-`[9] <https://medium.com/@nik5ter/explain-bitcoin-like-im-five-73b4257ac833>`_
-`[10] <https://www.reddit.com/r/ethereum/comments/1vb1gc/is_ethereum_an_alt_coin_can_anyone_eli5/>`_
-`[11] <https://www.reddit.com/r/ethereum/comments/2dpgwy/eli5_ethereum/>`_
-`[12] <https://www.reddit.com/r/ethereum/comments/47u5y9/explain_what_ethereum_is_to_a_bitcoin_trader/>`_
-`[13] <https://www.reddit.com/r/ethereum/comments/27wsgq/eli5_ethereum_its_uses_its_features_its_future/>`_
-`[14] <https://www.reddit.com/r/ethereum/comments/4936d3/are_you_new_to_ethereum_here_are_many/>`_
-`[15] <https://www.reddit.com/r/ethereum/comments/4279dh/eli5_what_exactly_is_ethereum/>`_
-`[16] <https://www.reddit.com/r/ethereum/comments/3n37dp/explaining_ethereum_ecosystem_for_normal/>`_
-`[17] <https://www.reddit.com/r/ethereum/comments/271qdz/can_someone_explain_the_concept_of_gas_in_ethereum/>`_
-`[18] <https://www.reddit.com/r/ethereum/comments/3hg7id/why_should_the_average_person_care_about_ethereum/>`_
-`[19] <https://www.reddit.com/r/ethereum/comments/43exre/what_are_the_advantages_of_ethereum_over_other/>`_
-
-
-Videos
-----------------------
-
-* http://change.is/video/ethereum-the-world-computer-featuring-dr-gavin-wood
-
-Infographics
---------------------------------
-
-* `Ethereum explained...[to your mother] <https://blog.ethereum.org/wp-content/uploads/2015/06/Ethereum-image-infographic-beginners-guide.png>`_
-* https://medium.com/@angelomilan/ethereum-explained-to-my-mom-infographic-673e32054c1c#.n9kzhme6v
-
-
-Comparison to alternatives
----------------------------------
-
-* `NXT <https://www.reddit.com/r/ethereum/comments/23aejv/eli5_what_is_the_qnce_between_ethereum_and/>`_
-* `MaidSafe <https://www.reddit.com/r/ethereum/comments/22r49u/how_is_maidsafe_different_then_etherium/>`_
