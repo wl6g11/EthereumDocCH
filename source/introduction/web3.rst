@@ -1,43 +1,58 @@
 
-Web 3: A platform for decentralized apps
+Web 3: 去中心化应用平台
 ********************************************************************************
 
+很多人相信像以太坊这样一个公开、无需信任的区块链平台十分适合作为Web 3.0的共享"后端"，
+像Web3.0这样去中心化、安全的互联网，它的核心服务，
+比如DNS和数字身份是去中心化的，个体可以参与到经济互动中。
 
+正如以太坊开发者希望的那样，以太坊是一张空白的帆布，你可以在上面创建任何你想要的东西。
+以太坊协议的目的是普遍化，以使其核心特征能够以任意方式结合。
+理想状态下，以太坊上的数据采集和处理程序会利用以太坊区块链来建立解决方案，
+这些解决方案依靠去中心化的一致性提供以往无法实现的新产品和服务。
 
-Many have come to believe that an open, trustless blockchain platform like Ethereum is perfectly suited to serve as the shared "back end" to a decentralized, secure internet - Web 3.0. An internet where core services like DNS and digital identity are decentralized, and where individuals can engage in economic interactions with each other.
+称以太坊为一个生态系统再合适不过了：核心协议由不同的基础设施、编码和社群支持，
+他们共同构成了以太坊项目。你也可以通过观察使用以太坊的项目来理解以太坊。
+现在已经有很多基于以太坊的项目已经非常引人注目了，
+比如Augur，Digix，Maker和其他很多项目（参见 :ref:`dapps` ）。
+此外，还有开发团队建立了人人皆可使用的开源组件。
+尽管这些组织都独立于以太坊基金之外，有各自的组织目标，但他们无疑对整个以太坊生态系统是有益的。
 
-As intended by the Ethereum developers, Ethereum is a blank canvas and you have the freedom to build whatever you want with it. The Ethereum protocol is meant to be generalized so that the core features can be combined in arbitrary ways. Ideally, dapp projects on Ethereum will leverage the Ethereum blockchain to build solutions that rely on decentralized consensus to provide new products and services that were not previously possible.
-
-Ethereum is perhaps best described as an ecosystem: the core protocol is supported by various pieces of infrastructure, code, and community that together make up the Ethereum project. Ethereum can also be understood by looking at the projects that use Ethereum. Already, there are a number of high-profile projects built on Ethereum such as Augur, Digix, Maker, and many more (see :ref:`dapps`). In addition, there are development teams that build open source components that anyone can use.  While each of these organizations are separate from the Ethereum Foundation and have their own goals, they undoubtedly benefit the overall Ethereum ecosystem.
-
-Further Watching/Reading:
+拓展视频/阅读:
 
 * Vitalik Buterin - TNABC 2015: https://www.youtube.com/watch?v=Fjhe0MVRHO4
 
-* Gavin Wood - DEVCON 1 - Ethereum for Dummies: https://www.youtube.com/watch?v=U_LK0t_qaPo
+* Gavin Wood - DEVCON 1 - 给小白讲解以太坊: https://www.youtube.com/watch?v=U_LK0t_qaPo
 
-* Ethereum London Meetup (best detailed here): https://www.youtube.com/watch?v=GJGIeSCgskc
+* 以太坊伦敦聚会 (详情参考如下): https://www.youtube.com/watch?v=GJGIeSCgskc
 
-Smart contracts
+智能合约
 ================================================================================
 
-by Alex:
+你愿意和从未谋面的人签合约吗？你会同意把钱借给埃塞俄比亚的农民吗？
+你愿意投资一个战乱地区由少数人管理的报纸吗？
+你会不嫌麻烦为了网上一次5美元的购买签一个有法律效力的合约吗？
 
-Would you enter in a contract with someone you've never met? Would you agree to lend money to some farmer in Ethiopia? Would you become an investor in a minority-run newspaper in a war zone? Would you go to the hassle of writing up a legal binding contract for a $5 dollar purchase over the internet?
+大多数的答案都是否定的，原因是合约需要的基础太多了：
+有时需要双方之间互相信任的工作关系，有时要依靠合法的工作体系、警察和律师费用。
 
-The answer is no for most of these questions, the reason being that a contract requires a large infrastructure: sometimes you need a working trust relationship between the two parties, sometimes you rely on a working legal system, police force and lawyer costs.
+在以太坊这些都不需要：如果合约所必需的要求都能放在区块链中，
+那么就会放在区块链中，这是一个无需信任基础也几乎不用任何成本的环境。
 
-In Ethereum you don't need any of that: if all the requisites to the contract can be put in the blockchain then they will, in a trustless environment for almost no cost.
-
-Instead of thinking of moving your current contracts to the blockchain, think of all the thousand little contracts that you would never agree to simply because they weren't economically feasible or there was not enough legal protection..
-
+不要想将你现有的合约转移到区块链中会麻烦，
+想一想那些因为经济上不可行或是没有足够法律保护而被你拒绝的成千上万的小合约吧。
 
 DAO
 ================================================================================
 
-Here is just one example: imagine you own a small business with your friends. Lawyers and accountants are expensive, and trusting a single partner to oversee the books can be a source of tension (even an opportunity for fraud). Complying strictly with a system in which more than one partner oversees the books can be trying and is subject to fraud whenever the protocol isn't followed exactly.
+这里简单地举个例子：想象一下你和朋友有个小生意。
+律师和会计费用很贵，完全信任让一个单独的合伙人来看管账簿可能让你精神很紧张（这甚至可能是个诈骗的机会）。
+你可以尝试一下多个合伙人共同看管账簿，但只要协议没有被严格遵守，就可能导致诈骗发生。
 
-Using a smart contract, ownership in your company and terms for the disbursal of funds can be specified at the outset. The smart contract can be written such that it is only changeable given the approval of a majority of owners. Smart contracts like these will likely be available as open source software, so you won't even need to hire your own programmer instead of an accountant/lawyer.
+使用智能合约，公司的所有权和基金分配的条款可以在一开始就详细规定。
+智能合约签署的方式是，只有大部分拥有者批准，合约才可以变更。 
+这样的智能合约可以像开源软件一样获取，你甚至都不必雇佣自己的程序员来代替会计和律师。
 
-A smart contract like this scales instantly. A couple of teenagers can split revenue from a lemonade stand just as transparently as a sovereign wealth fund can disburse funds to the hundred million citizens who are entitled to it. In both cases the price of this transparency is likely to be fractions of a penny per dollar.
-
+这样的智能合约可以立即按比例决定分配。几个年轻人分配柠檬水站收入，
+可以像主权基金给拥有基金的亿万公民分配收益一样透明。
+在这两个案例中，这种透明性带来的花费可能每美元连一美分都不到。
