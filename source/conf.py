@@ -54,9 +54,9 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Ethereum Homestead'
-copyright = u'2016, Ethereum community'
-author = u'Ethereum community'
+project = u'Ethereum Homestead中文文档'
+copyright = u'2018, LiWei'
+author = u'LiWei'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
