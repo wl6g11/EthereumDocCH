@@ -1,46 +1,54 @@
 .. _homestead-release:
+
 ********************************************************************************
-The Homestead Release
+Homestead的发布
 ********************************************************************************
 
-Homestead is the second major version of the Ethereum platform and is the first production release of Ethereum. It includes several protocol changes and a networking change that provides the ability to do further network upgrades. The first version of Ethereum, called the Frontier release, was essentially a beta release that allowed developers to learn, experiment, and begin building Ethereum decentralized apps and tools. 
+Homestead是以太坊平台的第二个主要版本，也是以太坊发布的第一个正式版本。
+它包括几处协议变更和网络设计变更，使网络进一步升级成为可能。
+以太坊的第一个版本Frontier实际上是测试版，供开发者学习、试验并开始建立以太坊去中心化的应用和工具。
 
-Milestones of the Ethereum development roadmap
+以太坊开发路线图里程碑
 -----------------------------------------------
 
-See `here <https://github.com/ethereum/wiki/wiki/Releases>`_ for the latest information.
+参见 `这个网址 <https://github.com/ethereum/wiki/wiki/Releases>`_ 以获取最新信息。
 
-If you are running a node connected to the live network, it is important that you upgrade to a compatible client. Such clients with their versions are listed under :ref:`Ethereum Clients`. Otherwise you will end up on the wrong fork and will no longer be in sync with the rest of the network.
+如果你正在运行一个和实时网络连接的节点，非常有必要升级到一个兼容的客户端。
+这些客户端及对应版本可从 :ref:`以太坊客户端列表 <Ethereum Clients>` 中获得。
+如果客户端不兼容，你会进入到错误的分叉，并无法和网络的其他部分同步。
 
-Once the Ethereum blockchain reaches block 1,150,000, the Ethereum network will undergo a hardfork enabling a few major changes such as explained in the following section.
+以太坊区块链一旦到达1,150,000号区块，以太坊网络就会经历一个硬分叉，带来几项主要变更，这将在下一章节中阐述。
 
 .. _homestead-hard-fork-changes:
 
-Homestead hard fork changes
+Homestead硬分叉变更
 ----------------------------------
-Ethereum in the narrow formal sense is a suite of protocols.
-Homestead comes with a few backward-incompatible protocol changes, and therefore will require a hard fork. These changes that made their way through the process for :ref:`Ethereum Improvement Proposals <Ethereum Improvement Proposals>` and included are:
+
+以太坊从狭义上来说，是一系列协议。
+Homestead带来了几个反向不兼容的协议变更，进而要求硬分叉。
+这些变更遵循 :ref:`以太坊改进建议 <Ethereum Improvement Proposals>` 流程，
+主要包括以下几个内容：
 
 * `EIP 2: <https://github.com/ethereum/EIPs/blob/master/EIPS/eip-2.mediawiki>`_
 
-  * cost for creating contracts via a transaction is increased from 21000 to 53000. Contract creation from a contract using the ``CREATE`` opcode is unaffected.
-  * transaction signatures whose s-value is greater than ``secp256k1n/2`` are now considered invalid
-  * If contract creation does not have enough gas to pay for the final gas fee for adding the contract code to the state, the contract creation fails (ie. goes out-of-gas) rather than leaving an empty contract.
-  * Change the difficulty adjustment algorithm
-* `EIP 7: DELEGATECALL <https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7.md>`_: Add a new opcode, ``DELEGATECALL`` at ``0xf4``, which is similar in idea to ``CALLCODE``, except that it propagates the sender and value from the parent scope to the child scope, ie. the call created has the same sender and value as the original call. This means contracts can store pass through information while following msg.sender and ``msg.value`` from its parent contract. Great for contracts which create contracts but don’t repeat additional information which saves gas. See `comments on EIP 7 <https://github.com/ethereum/EIPs/issues/23>`_
-* `EIP 8: devp2p Forward Compatibility compliance with the Robustness Principle <https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8.md>`_ Changes to the RLPx Discovery Protocol and RLPx TCP transfer protocol to ensure that all client software in use on the Ethereum network can cope with future network protocol upgrades. For older versions of an Ethereum client, updates to the network protocol weren’t being accepted by older clients and would refuse communication if the hello packets didn’t meet expectations. This update means all future versions of the client will accept incoming network upgrades and handshakes.
+  * 通过交易创建合约的费用由21000增加到53000。用 ``CREATE`` 操作码通过合约来创建合约不受影响。
+  * S值比 ``secp256k1n/2`` 大的交易签名现在被认定无效。
+  * 如果创建合约时没有足够的gas用来支付给状态增加合约编码所需的最终gas费用，合约创建就会失败（例如，无gas可用）而不会留下一个空合约。
+  * 改变算法难度调整
+* `EIP 7: DELEGATECALL <https://github.com/ethereum/EIPs/blob/master/EIPS/eip-7.md>`_: 增加一个新的操作码, ``DELEGATECALL`` at ``0xf4``, 它和 ``CALLCODE`` 的概念相似，不过会把发送者和父作用域的价值发送到子作用域，比如，创建的调用与原始调用具有相同的发送者和价值。这就意味着合约可以通过信息存储通路，同时遵从父合约中的 ``msg.sender`` 和 ``msg.value`` 。这样对创建合约的合约来说是好事，但是不要重复那些存储gas的附加信息。参见对 `EIP 7的评论 <https://github.com/ethereum/EIPs/issues/23>`_
+* `EIP 8: devp2p 向前兼容性符合健壮性原则 <https://github.com/ethereum/EIPs/blob/master/EIPS/eip-8.md>`_ RLPx 发现协议和 RLPx TCP传输协议确保以太坊网路上使用的客户端软件可以应对将来的网络协议升级。对于以太坊的旧版本来说，网络协议升级并不被旧客户端所接受，发现接收到的hello数据包不是预期数据时，通信会被拒绝。这个升级意味着未来的客户端版本能够接受即将到来的网络升级和握手通信。
 
-The changes have the following benefits:
+这些变化有以下几项好处:
 
-* EIP-2/1 eliminates the excess incentive to create contracts via transactions, where the cost is 21000, rather than contracts, where the cost is 32000.
-* EIP-2/1 also fixes the protocol "bug" that with the help of suicide refunds, it is currently possible to make a simple ether value transfer using only 11664 gas.
-* EIP-2/2 fixes a transaction malleability concern (not a security flaw, but a UI incovenience).
-* EIP-2/3 creates a more intuitive "success or fail" distinction in the result of a contract creation process, rather than the current "success, fail, or empty contract" trichotomy
-* EIP-2/4 eliminates the excess incentive to set the timestamp difference to exactly 1 in order to create a block that has slightly higher difficulty and that will thus be guaranteed to beat out any possible forks. This guarantees to keep block time in the 10-20 range and according to simulations restores the target 15 second blocktime (instead of the current effective 17s).
-* EIP-7 makes it much easier for a contract to store another address as a mutable source of code and ''pass through'' calls to it, as the child code would execute in essentially the same environment (except for reduced gas and increased callstack depth) as the parent.
-* EIP-8 makes sure that all client software in use on the Ethereum network can cope with future network protocol upgrades.
+* EIP-2/1消除了通过交易创建合约的过量激励，通过交易创建的成本是21000，而通过合约创建的成本是32000。
+* EIP-2/1 在自杀式退款的帮助下修复了协议中的漏洞， 现在只用11664 gas就能实现简单的以太币价值转移。
+* EIP-2/2 修复了交易可塑性方面的担忧（不是安全性缺陷，是用户界面不便利性）
+* EIP-2/3 在合约创建过程中，建立了更加直观的"成功或失败"的区分，而不像现在"成功，失败或者空账户" 三分的情况。
+* EIP-2/4 将设置时间戳区别的过量激励消除到1，以便创建难度稍大的区块，进而保障搞定任何可能的分叉。这样就保证了出块时间维持在10-20范围，并且按照模拟可以恢复目标的15秒出块时间（现在有效时间是17秒）。
+* EIP-7 使合约更容易储存另一个地址，作为编码和"通过"调用的可变来源，子编码会和父编码在本质上相同的环境下执行（除非gas减少，调用栈深度增加）
+* EIP-8 确保以太坊网络上使用的所有客户端软件可以应对未来网络协议升级。
 
+参考资料:
 
-Additional resources:
-- `Reddit discussion on Homestead Release <https://www.reddit.com/r/ethereum/comments/48arax/homestead_release_faq/>`_
-- :ref:`Ethereum Improvement Proposals`
+- `Reddit上关于Homestead发布的讨论 <https://www.reddit.com/r/ethereum/comments/48arax/homestead_release_faq/>`_
+- :ref:`以太坊改进建议 <Ethereum Improvement Proposals>`
