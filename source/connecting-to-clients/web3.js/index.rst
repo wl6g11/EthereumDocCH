@@ -6,9 +6,11 @@ web3.js
 
 **web3.js**
 
-This is the Ethereum compatible `JavaScript API <https://github.com/ethereum/wiki/wiki/JavaScript-API>`_ which implements the `Generic JSON RPC <https://github.com/ethereum/wiki/wiki/JSON-RPC>`_ spec. It's available on npm as a node module, for bower and component as an embeddable js and as a meteor.js package.
+这是一个以太坊兼容的 `JavaScript API <https://github.com/ethereum/wiki/wiki/JavaScript-API>`_ ，
+这个API实现了 `Generic JSON RPC <https://github.com/ethereum/wiki/wiki/JSON-RPC>`_ 标准。
+它作为一个node模块可从npm中获取，作为可嵌入js和meteor.js包模块。
 
-Links:
+链接:
 
 * GitHub: https://github.com/ethereum/web3.js/
 * Wiki: https://github.com/ethereum/wiki/wiki/JavaScript-API
