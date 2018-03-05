@@ -13,19 +13,20 @@ cpp-ethereum
     :width: 200px
 
 
-Quick Start
+快速入门
 ================================================================================
 
-- Welcome to the Ethereum C++ project :-)
-- The GitHub repository for this project is `ethereum/cpp-ethereum <https://github.com/ethereum/cpp-ethereum/>`_
-- Automation runs on `Appveyor <https://ci.appveyor.com/project/ethereum/cpp-ethereum>`_ and `TravisCI <https://travis-ci.org/ethereum/cpp-ethereum/branches>`_.
-- We have instructions for :ref:`Installing binaries` and :ref:`Building from source`.
-- Most project communication happens in our `User <https://gitter.im/ethereum/cpp-ethereum>`_ and `Developer <https://gitter.im/ethereum/cpp-ethereum-development>`_ Gitter channels.
-- Issues are tracked in our `Github issue tracker <http://github.com/ethereum/cpp-ethereum/issues>`_.
-- cpp-ethereum is extremely portable and is used on a :ref:`very broad range of platforms <cpp-ethereum-portability>`.
+- 欢迎来到Ethereum C++ 项目 :-)
+- 项目的GitHub仓库如下 `ethereum/cpp-ethereum <https://github.com/ethereum/cpp-ethereum/>`_
+- 自动运行在 `Appveyor <https://ci.appveyor.com/project/ethereum/cpp-ethereum>`_ 和 `TravisCI <https://travis-ci.org/ethereum/cpp-ethereum/branches>`_.
+- :ref:`Installing binaries` 和 :ref:`Building from source` 指南.
+- 大部分的项目沟通可在 `用户 <https://gitter.im/ethereum/cpp-ethereum>`_ 和 `开发者 <https://gitter.im/ethereum/cpp-ethereum-development>`_ Gitter频道进行.
+- 问题可在 `Github issue tracker <http://github.com/ethereum/cpp-ethereum/issues>`_ 中进行跟踪.
+- cpp-ethereum十分轻量级并且可用在 :ref:`多种平台 <cpp-ethereum-portability>` 上.
 
 
-Details
+
+详情
 ================================================================================
 
 .. toctree::
