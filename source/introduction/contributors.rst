@@ -1,18 +1,17 @@
 .. _contributors:
 
 ********************************************************************************
-Contributors
+贡献者
 ********************************************************************************
 
-This documentation was built collectively by the Ethereum community as part of
-a project called the
-`Homestead Documentation Initiative <https://www.reddit.com/r/ethereum/comments/45116k/call_to_action_homestead_documentation_initiative/>`_
-which was coordinated by:
+此文本由以太坊社群共同创建，是
+`Homestead Documentation Initiative <https://www.reddit.com/r/ethereum/comments/45116k/call_to_action_homestead_documentation_initiative/>`_ 项目的一部分，
+项目的协调人员如下:
 
 - `Viktor Trón ("zelig") <https://github.com/zelig>`_
 - `Hudson Jameson ("Souptacular") <https://github.com/Souptacular>`_
  
-We would like to thank everybody who helped in this effort for `their contributions <https://github.com/ethereum/homestead-guide/graphs/contributors>`_:
+我们在此感谢每一位 `参与者 <https://github.com/ethereum/homestead-guide/graphs/contributors>`_ 的贡献:
 
 - `Ricardo de Azevedo Brandao <https://github.com/programonauta>`_
 - `Santanu Barai <https://github.com/0mkara>`_
@@ -71,7 +70,7 @@ We would like to thank everybody who helped in this effort for `their contributi
 - `Weiyang Zhu <https://github.com/ZhuWeiyang>`_
 - `Will Zeng <https://github.com/willzeng>`_
 
-And these pseudonymous contributors:
+以及这些匿名参与者:
 
 - `12v <https://github.com/12v>`_
 - `ana0 <https://github.com/ana0>`_
