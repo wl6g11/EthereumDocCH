@@ -4,18 +4,15 @@
 Ethereum(J)
 ################################################################################
 
-**Ethereum(J)** is a pure-Java implementation of the Ethereum protocol.
-It is provided as a library that can be embedded in any Java/Scala project and
-to provide full support for Ethereum protocol and sub-services.
-Ethereum(J) was first developed by
-`Roman Mandeleil <https://github.com/romanman>`_ and is now sponsored
-by `<ether.camp> <http://www.ether.camp>`_.
+**Ethereum(J)**是以太坊协议的纯Java实现。它作为可以嵌入任何Java/Scala项目的库提供，
+并为以太坊协议及附属服务提供完全支持。
+Ethereum(J)期初是由`Roman Mandeleil <https://github.com/romanman>`_ 开发，
+目前由`<ether.camp> <http://www.ether.camp>`_ 资助开发。
 
-Ethereum(J) supports CPU mining.  It is currently implemented in pure Java
-and can be used in private and test networks. You may even mine on the
-live Ethereum network, even though it is not economically feasible.
+Ethereum(J)支持CPU挖矿。目前它由纯Java实现，可用于私人和测试网络。
+你甚至可以在实时以太坊网络上挖矿，尽管这样做并不划算。
 
-Links:
+链接:
 
 * Blog: http://ethereumj.io/
 * GitHub: https://github.com/ethereum/ethereumj
