@@ -1,69 +1,72 @@
 .. _community:
 
 ********************************************************************************
-Community
+社区
 ********************************************************************************
 
-Please choose your forum wisely when starting a discussion or asking a question, help keep our various forums clean and tidy.
+发起讨论和问问题时，请正确选择论坛，并维护论坛环境整洁。
 
 Reddit
 ================================================================================
-The `Ethereum subreddit`_ is the most inclusive Ethereum forum, where most of the community discussion is happening and where core devs are also active. This is your forum of choice for generic discussion of news, media coverage, announcements, brainstorming. In general all things Ethereum relevant to the wider community.
+以太坊reddit分论坛是最全面的以太坊论坛，这里是大部分社区讨论发生的地方和核心开发者最活跃的地方。
+如果你想对新闻、媒体、报道、公告、头脑风暴进行一般的讨论，选这个论坛就对了。
+一般来讲，这里有与更广泛社区相关的一切以太坊事件。
 
-Strictly no price discussion.
+讨论完全免费。
 
-Also, this is not the ideal place to ask for hands-on help or post questions you expect there are clear immediate answers to (use :ref:`gitter-rooms` and :ref:`stack-exchange` for these, respectively).
+但这个论坛不适合寻求实际帮助或者得到迅速明确的答复（如果有以上两方面需求，可分别使用 :ref:`gitter-rooms` 和 :ref:`stack-exchange` ）
 
-Read the `Ethereum subreddit rules`_ before posting.
+发帖前请阅读 `以太坊subreddit规定`_ 。
 
-Further specialised subreddits:
+更多专业subreddits:
 
-* `/r/EthTrader <https://www.reddit.com/r/EthTrader/>`_ - Ether trading, price and  market
-* `/r/EtherMining <https://www.reddit.com/r/EtherMining/>`_ - Ether mining discussion
-* `/r/Ethmarket <https://www.reddit.com/r/ethmarket/>`_ - Marketplace for individuals looking to exchange goods and services for Ether
-* `/r/Ethinvestor <https://www.reddit.com/r/Ethinvestor/>`_ - News and prospects for Ethereum investors. Following the long term trends in the Ethereum marketplace.
+* `/r/EthTrader <https://www.reddit.com/r/EthTrader/>`_ - 以太币交易、价格和市场
+* `/r/EtherMining <https://www.reddit.com/r/EtherMining/>`_ - 关于以太币挖矿的讨论
+* `/r/Ethmarket <https://www.reddit.com/r/ethmarket/>`_ - 个人用实物和服务交换以太币的市场
+* `/r/Ethinvestor <https://www.reddit.com/r/Ethinvestor/>`_ - 以太坊投资新闻和前景，以及以太坊市场发展的长期趋势
 * `/r/ethereumism/ <https://www.reddit.com/r/ethereumism/>`_ - A bit more ism, ostic, ical, ist and tinfoil hats, pyramids and crystal ball type of views - the ethereal side of Ethereum
 
 
 .. _Ethereum subreddit: https://www.reddit.com/r/ethereum/
-.. _Ethereum subreddit rules: http://www.reddit.com/r/ethereum/comments/3auc97/ethereum_subreddit_rules/
+.. _以太坊subreddit规定: http://www.reddit.com/r/ethereum/comments/3auc97/ethereum_subreddit_rules/
 
 .. _stack-exchange:
 
 Stack Exchange
 ================================================================================
 
-The `Ethereum Stack Exchange <http://ethereum.stackexchange.com/>`_ is part of the StackExchange network of Q&A communities. StackExchange is a free Q&A site where all the questions and answers are preserved for posterity.
+`以太坊Stack Exchange <http://ethereum.stackexchange.com/>`_ 是StackExchange网络问答社区的一部分。
+StackExchange是免费的问答网站，网站上所有的问题和答案都会为后人保存下来。
 
-This is the best place to ask technical questions. Help your fellow etherians by answering questions and collect reputation points.
+这是最适合询问技术问题的网站。可以通过回答问题来帮助以太坊同仁们，增加威望值。
 
 .. _gitter-rooms:
 
 Gitter Rooms
 ================================================================================
 
-Gitter is our forum of choice for daily chat. It is the virtual coworking space where devs hang out, so it is where you can get quick help and a bit of handholding if needed.
+日常聊天可以选择Gitter。这是开发者们的虚拟公用工作空间，如果有需要，在这里你可以迅速得到帮助和一些支持。
 
-Gitter uses Github accounts, offers Github integration (notification of pull requests etc), private channels, provides markdown formatting, and more.
+Gitter 使用Github账户，提供Github集成（pull请求通知等），个人频道，Markdown格式化等。
 
-Most Gitter channels are organised around particular repositories, or generic topics like research or governance. Please choose the appropriate room and keep discussions on topic.
+大部分Gitter频道都围绕特定的资源库或是研究管理这类一般议题组织的。请选择合适的房间，保持讨论话题的相关性。
 
-See `the full list of gitter rooms for the Ethereum organisation`_. Below is the list of active public channels:
+查阅 `以太坊组织gitter房间完整列表 <the full list of gitter rooms for the Ethereum organisation>`_ 。以下是活跃的公开频道列表：
 
-* `go-ethereum`_ - about geth (and tools related to the go implementation)
-* `cpp-ethereum`_ - about eth (and tools related to the C++ implementation)
-* `web3.js`_ - about web3.js, Ethereum JavaScript API library
-* `Solidity`_ - The Solidity Contract-Oriented Programming Language
-* `serpent`_ - The Serpent language for contract development
-* `mist`_ - GUI dapp browser, official wallet app
-* `light-client`_ - about light client and the LES protocol
-* `research`_ - Ethereum research
-* `governance`_ - about dev governance
-* `whisper`_ - anonymous datagram publishing
-* `swarm`_ - decentralised content storage and distribution network
-* `EIPs`_ - discussion of _`Ethereum Improvement Proposals (EIPs)`
-* `ethereumjs-lib`_ - a JavaScript library of core Ethereum functions
-* `devp2p`_ -  ÐΞV's p2p network protocol & framework
+* `go-ethereum`_ - 关于geth（以及与go实现相关的工具）
+* `cpp-ethereum`_ - 关于eth（以及与C++实现相关的工具）
+* `web3.js`_ - 关于web3.js，以太坊JavaScritpt API库
+* `Solidity`_ - Solidity合约相关编程语言
+* `serpent`_ - 用于合约开发的Serpent语言
+* `mist`_ - GUI dapp browser, 官方钱包应用
+* `light-client`_ - 关于light客户端和LES协议
+* `research`_ - 以太坊研究
+* `governance`_ - 关于开发者管理
+* `whisper`_ - 匿名数据电报发表
+* `swarm`_ - 去中心化的内容存储和分配网络
+* `EIPs`_ - `Ethereum Improvement Proposals` 讨论
+* `ethereumjs-lib`_ - 以太坊核心 JavaScript 库
+* `devp2p`_ -  ÐΞV's p2p 网络协议及框架
 
 .. _the full list of gitter rooms for the Ethereum organisation: https://gitter.im/orgs/ethereum/rooms
 
@@ -84,28 +87,34 @@ See `the full list of gitter rooms for the Ethereum organisation`_. Below is the
 
 .. _Ethereum Improvement Proposals:
 
-Ethereum Improvement Proposals (EIPs)
+以太坊改进协议 (EIPs)
 ================================================================================
 
-The EIP scheme aims to be a framework and largely informal business process coordinating improvements to the protocols. People should first propose their idea as an issue or pull request to the EIPs repository. After basic filtering, the proposal will receive a number and is published in draft form. For an EIP to become Active it will require the mutual consent of the community. Those proposing changes should consider that ultimately consent may rest with the consensus of the Ethereum users.
-For discussion of EIPs, use the `gitter channel for EIP discussions`_.
+以太坊改进协议计划旨在成为协调协议改进的框架和非正式商业流程。
+人们会首先向以太坊改进协议资源库提出想法作为一个问题或pull请求。
+经过基本的过滤，提议会收到一个数字并以草稿的形式发布。必须经过社区一致同意，以太坊改进协议才能变成活跃状态。
+提出的改变应该考虑到最终的同意取决于以太坊用户的共识。
+对于以太坊改进协议的讨论，可进入 `gitter channel for EIP discussions` 。
 
-* `EIP guidelines and sample EIP <https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1.mediawiki>`_
-* `EIP template <https://github.com/ethereum/EIPs/blob/master/eip-X.mediawiki>`_
-* `EIP repository and README <https://github.com/ethereum/EIPs>`_
-* `gitter channel for EIP discussions <https://gitter.im/ethereum/EIPs>`_
+* `EIP 指南及示例 <https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1.mediawiki>`_
+* `EIP 模板 <https://github.com/ethereum/EIPs/blob/master/eip-X.mediawiki>`_
+* `EIP repository 和 README <https://github.com/ethereum/EIPs>`_
+* `gitter EIP discussions频道 <https://gitter.im/ethereum/EIPs>`_
 
 Meetups
 ================================================================================
-* `Directory hosted on Meetup <http://www.meetup.com/topics/ethereum/>`_
-* `Meetup channel on Ethereum Forum <http://forum.ethereum.org/categories/meetups/>`_
+* `Meetup目录 <http://www.meetup.com/topics/ethereum/>`_
+* `以太坊论坛的Meetup频道 <http://forum.ethereum.org/categories/meetups/>`_
 
-Obsolete
+作废声明
 ===================
+
 Skype
 -------
-Some community discussion fora still use skype rooms, but we would like to move away from that and encourage people to use `gitter <http://gitter.im>`_ or `slack <http://slack.com>`_.
+
+一些社区讨论会仍然在使用skype房间，但是我们想取消这一途径，并推荐大家使用 `gitter <http://gitter.im>`_ 或 `slack <http://slack.com>`_。
 
 Ethereum Forum
 --------------------
-Stephan Tual's legendary `Ethereum Forum <https://forum.ethereum.org/>`_ is no longer maintained and likely to be decommissioned soon. We encourage people to use one of the recommended alternatives listed above.
+
+Stephan Tual的 `以太坊论坛 <https://forum.ethereum.org/>`_ 将不再维护，可能很快就会停用。我们鼓励大家使用以上列出的推荐选择。
