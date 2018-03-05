@@ -4,14 +4,14 @@
 pyethapp
 ################################################################################
 
-**pyethapp** is the python-based client implementing the Ethereum cryptoeconomic state machine. The python implementation aims to provide an easily hackable and extendable codebase. 
+**Pyethapp**是基于python的客户端，实现以太坊加密经济状态机。python实现旨在提供一个更容易删节和扩展的代码库。
 
-pyethapp leverages two ethereum core components to implement the client:
+Pyethapp使用了两个以太坊核心组件来实现客户端：
 
-* `pyethereum <https://github.com/ethereum/pyethereum>`_ - the core library, featuring the blockchain, the ethereum virtual machine, mining
-* `pydevp2p <https://github.com/ethereum/pydevp2p>`_ - the p2p networking library, featuring node discovery for and transport of multiple services over multiplexed and encrypted connections
+* `pyethereum <https://github.com/ethereum/pyethereum>`_ - 核心库，包含区块链、以太坊模拟机和挖矿为特征
+* `pydevp2p <https://github.com/ethereum/pydevp2p>`_ - 点对点网络库，包含节点发现和通过复用和加密连接传输多个服务
 
-Links:
+链接:
 
 * GitHub: https://github.com/ethereum/pyethapp
 * Wiki: https://github.com/ethereum/pyethapp/wiki/Getting-Started
