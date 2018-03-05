@@ -4,10 +4,9 @@
 ethereumH
 ################################################################################
 
-This package provides a tool written in Haskell to allow you to connect to
-the Ethereum blockchain
+该包提供了一个使用Haskell编写的工具用于连接以太网区块链。
 
-Links:
+链接:
 
 * GitHub: https://github.com/blockapps/ethereumH
 * BlockApps: http://www.blockapps.net/
