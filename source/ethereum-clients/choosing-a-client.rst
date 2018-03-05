@@ -1,24 +1,21 @@
 .. _sec:clients:
 
 *****************************************************
-Choosing a client
+选择客户端
 *****************************************************
 
-Why are there multiple Ethereum clients?
+为什么有多个以太坊客户端?
 =====================================================================
 
-From the earliest days of the project there have been multiple
-client implementations across a range of different operating systems.  That
-client diversity is a huge win for the ecosystem as a whole.
-It lets us verify that the protocol (specified in the `Yellow Paper <https://github.com/ethereum/yellowpaper>`_)
-is unambiguous.  It keeps the door open for new innovation.  It keeps us
-all honest.  However, it can be very confusing for end-users, because there
-is no universal "Ethereum Installer" for them to use.
+项目早期，在众多不同的操作系统中就有多个可以彼此协作的客户端实现。
+客户端的多样性对于整个生态系统来说是巨大的成功。
+它使我们能够证明协议(参见 `黄皮书 <https://github.com/ethereum/yellowpaper>`_ )是明确清晰的，
+为创新打开大门，也让我们都保持诚实。但是对终端用户来说，没有通用的"以太坊安装程序"可供他们使用，可能引起他们的困惑。
 
-As of September 2016, the leading implementations are :ref:`go-ethereum` and :ref:`Parity`.
+自2016年9月起，主导的客户端实现为 :ref:`go-ethereum` 和 :ref:`Parity` 。
 
 +------------------------+------------+------------------------+-------------------------------------+
-| Client                 | Language   | Developers             | Latest release                      |
+| 客户端                 | 语言        | 开发者                  | 最新版本                          |
 +========================+============+========================+=====================================+
 | :ref:`go-ethereum`     | Go         | `Ethereum Foundation`_ | `go-ethereum-v1.4.18`_              |
 +------------------------+------------+------------------------+-------------------------------------+
@@ -52,75 +49,57 @@ As of September 2016, the leading implementations are :ref:`go-ethereum` and :re
 .. _ruby-ethereum-v0.9.6: https://rubygems.org/gems/ruby-ethereum/versions/0.9.6
 
 
-What should I install on my desktop/laptop?
+台式机/笔记本电脑上应该安装什么?
 ================================================================================
 
-Most users will likely just install `Mist / Ethereum Wallet <https://github.com/ethereum/mist>`_
-and that will be enough for their needs.
+大部分的用户只需要安装 `Mist / 以太坊钱包 <https://github.com/ethereum/mist>`_ 就能满足使用需求。
 
-The Ethereum Wallet is a "single dapp" deployment of the **Mist Browser**
-which will be the centerpiece of the Metropolis phase of development, which
-comes after Homestead.
+以太坊钱包是**Mist浏览器**"单独的DApp"部署方式，它将成为Homestead之后Metropolis开发的核心。
 
-Mist comes with bundled :ref:`go-ethereum` and :ref:`cpp-ethereum` binaries
-and if you are not running a command-line Ethereum client when Mist starts
-then it will start syncing the blockchain using one of the bundled clients
-(defaulting to **geth**).  If you want to use Parity with Mist, or to run Mist against
-a private network, just start your node before Mist, and Mist
-will connect to your node rather than starting one itself.
+Mist附有绑定的 :ref:`go-ethereum` 和 :ref:`cpp-ethereum` 二进制。
+如果Mist开启的时候，你没有在运行命令行以太坊客户端，它就会运行其中一个绑定的客户端（默认为**geth**）进行同步区块链。
+如果希望使用Parity和Mist，或在一个私有网络中运行Mist，只需要在Mist运行前前启动你的节点，
+此时，Mist不会启动它自己的节点，而是连接你的节点。
 
-**Work is underway to add Parity and other clients as "first-class entities"
-to Mist too.**
+**添加Parity、其他客户端以及Mist作为“一等实体”的工作正在进行**
 
-If you want to interact with Ethereum on the command-line, and to take
-advantage of the Javascript console then you will want to install one of
-the client applications directly, as well as Mist.  Follow the links in
-the table above for further instructions.
+如果你想在命令行和以太坊互动，并且利用JavaScript控制台，那么你会想直接安装一个客户端软件以及Mist。
+可从上文中表格中的链接获取详细信息。
 
-If you want to do mining then Mist will not be sufficient.  Check out
-the :ref:`mining` section.
+如你想要挖矿，那么Mist不能满足需求。请参阅 :ref:`mining` 部分。
 
-
-What should I install on my mobile/tablet?
+手机/平板电脑上应该安装什么?
 ================================================================================
 
-We are at the very beginning of our support for mobile devices.   The Go
-team are publishing experimental iOS and Android libraries, which some
-developers are using to start bootstrapping mobile applications, but there
-are not yet any mobile Ethereum clients available.
+移动设备上的软件支持还在起步阶段。Go团队正在发布试用的iOS和安卓程序库，
+一些开发者正在用程序库开始研究手机应用辅助程序，但是目前还没有任何可用的以太坊手机客户端。
 
-The main hinderance to the use of Ethereum on mobile devices is that the
-Light Client support is still incomplete.   The work which has been done is
-off in a private branch, and is only available for the Go client.
-doublethinkco will be starting development of Light Client for the C++ client
-in the coming months, following grant funding.
+在移动设备上使用以太坊最主要的障碍是Light客户端支持尚不完备。
+已完成的工作成果在私有分支上关闭，只在Go客户端上可用。
+Doublethinkco将在接下来的几个月开始为C++客户端开发Light客户端，接下来会有资金支持。
 
-Check out `Status.im <http://status.im>`_, who were initially using
-`ethereumj-personal <https://github.com/status-im/ethereumj-personal>`_ based
-on :ref:`Ethereum(J)`, but have recently flipped to Geth cross-builds with
-Light Client.
+查看 `Status.im <http://status.im>`_, 它最先使用了
+:ref:`Ethereum(J)` 的 `ethereumj-personal <https://github.com/status-im/ethereumj-personal>`_
+但是最近跳转到了和Light客户端的Geth交叉构建。
 
-
-What should I install on my SBC?
+单板计算机（SBC）上应该安装什么?
 ================================================================================
 
-You have some choice here depending on your skill level, and what you are looking to do.
+按照技术水平的不同，以及你想要达到的目的，可以有不同的选择。
 
-* Download a fully prepared image(link to page with detailed download & install instructions)
+* 下载一个完整的安装镜像（链接到有具体下载和安装说明的页面）
 
-  * If you are new to Ethereum AND SBC boards such as the Raspberry Pi then this is for you! Simply download the image specific to the dev board you are working with, burn it to an SD card, boot your device, and run Ethereum!
+  *  如果你刚开始使用以太坊AND SBC板，诸如树莓派，那么这就是为你准备的！只需要下载你正在使用的开发板的特定安装镜像，刻录到SD卡上，启动设备。运行以太坊！
 
-* Download a pre-compiled application(link to page with detailed download & install instructions)
+* 下载一个预编译的应用（链接到有具体下载和安装说明的页面）
 
-  * If you already have an SBC running and have a specific, preferred OS or setup that you want to keep, then this is your best option! Depending on the platform, you can simply download the apropriate executable, and with minimal linking of libraries and setting of PATH you can have Ethereum running in your existing environment!
+  * 如果你已经有SBC运行，并且有特定、偏好的OS或是想保留的设置，这是你的最佳选择！你可以只根据平台，下载合适的可执行文件，只需最少的资源库链接和PATH设置，就能运行以太坊！
 
-* Build from source using customizable scripts(link to page with more detail and individual SBC links to https://github.com/ethembedded)
+* 下载一个预编译的应用（链接到详细说明与SBC链接 https://github.com/ethembedded)
 
-  * Looking to perform a custom install?  We have scripts available to compile from source "on device". Our scripts contain auto-install of dependencies as well as the client itself. This will allow you to install a specific version of the Ethereum client(i.e.-"develop", "master", etc.), compile your own forked version of a client, and generally play around with the intracacies of the build process.
+  * 想要运行定制的安装程序？ 我们有可以从设备的源上编译的描述语言。我们的描述语言包含自动安装依赖的软件以及客户端本身。这就使你能够安装以太坊客户端的特定版本（比如"develop"， "master"等），编译你自己的客户端分叉版本，尝试创建程序中的各种复杂的问题找到最佳解决方案。
 
+客户端交互
+================================================================================
 
-********************************************************************************
-Interacting with Clients
-********************************************************************************
-
-In order to interact with Ethereum clients programatically, please refer to the :ref:`Connecting to Clients` section.
+如需通过编程与以太坊客户端进行交互，请参见 :ref:`Connecting to Clients` 。
