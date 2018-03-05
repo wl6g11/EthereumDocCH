@@ -5,7 +5,7 @@ ethereumjs-lib
 ################################################################################
 
 如 `黄皮书 <https://github.com/ethereum/yellowpaper>`_ 中所描述的，
-**ethereumjs-lib**是核心`以太坊 <http://ethereum.org/>`_ 功能的javascript库。
+**ethereumjs-lib** 是核心`以太坊 <http://ethereum.org/>`_ 功能的javascript库。
 这是个简单的元模块，提供以下模块。大部分JS模块都在`ethereumjs <https://github.com/ethereumjs>`_ 上都有跟踪。
 
 * `VM <https://github.com/ethereumjs/ethereumjs-vm>`_ - 以太坊虚拟机和状态处理功能

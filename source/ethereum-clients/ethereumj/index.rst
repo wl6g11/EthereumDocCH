@@ -4,7 +4,7 @@
 Ethereum(J)
 ################################################################################
 
-**Ethereum(J)**是以太坊协议的纯Java实现。它作为可以嵌入任何Java/Scala项目的库提供，
+**Ethereum(J)** 是以太坊协议的纯Java实现。它作为可以嵌入任何Java/Scala项目的库提供，
 并为以太坊协议及附属服务提供完全支持。
 Ethereum(J)期初是由`Roman Mandeleil <https://github.com/romanman>`_ 开发，
 目前由`<ether.camp> <http://www.ether.camp>`_ 资助开发。
