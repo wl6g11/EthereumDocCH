@@ -1,20 +1,22 @@
 .. _Connecting to Clients:
 
 ################################################################################
-Connecting to Ethereum Clients
+连接到以太坊客户端
 ################################################################################
 
-Ethereum clients expose a number of methods over `JSON-RPC <https://github.com/ethereum/wiki/wiki/JSON-RPC>`_ for interacting with them from within an application. However, interacting directly over JSON-RPC passes on a number of burdens to the application developers, such as:
+通过 `JSON-RPC <https://github.com/ethereum/wiki/wiki/JSON-RPC>`_ ，在应用程序中与以太坊客户端进行交互可以有多种方法。
+然而，通过JSON-RPC直接交互会给应用程序开发者带来许多负担，例如：
 
- - JSON-RPC protocol implementation
- - Binary format encoding/decoding for creating and interacting with smart contracts
- - 256 bit numeric types
- - Admin command support - e.g. create/manage addresses, sign transactions
+ - JSON-RPC协议实现
+ - 新建和操作智能合约时的二进制编/解码
+ - 256位数据类型
+ - 管理员命令支持 - 例如，新建/管理地址，签名操作
 
-A number of libraries have been written to help address these issues, allowing application developers to focus on their applications, instead of the underlying plumbing to interact with Ethereum clients and the wider ecosystem.
+为解决以上的这些问题，开发人员开发了一系列库。在这些库的帮助下，开发人员可以专注于实现他们的应用程序，
+而不必实现与以太坊客户端和其生态系统进行交互的底层内容。
 
 +----------------------+------------+-----------------------------------------------+
-| Library              | Language   | Project Page                                  |
+| 库                   | 语言       | 项目页面                                      |
 +======================+============+===============================================+
 | :ref:`web3.js`       | JavaScript | https://github.com/ethereum/web3.js           |
 +----------------------+------------+-----------------------------------------------+
@@ -27,7 +29,7 @@ A number of libraries have been written to help address these issues, allowing a
 | :ref:`web3.py`       | Python     | https://github.com/ethereum/web3.py           |
 +----------------------+------------+-----------------------------------------------+
 
-Information on each library is provided in the following sections:
+库的详细信息可参见如下内容：
 
 .. toctree::
    :maxdepth: 2
@@ -38,4 +40,4 @@ Information on each library is provided in the following sections:
    ethereum-ruby/index.rst
    web3.py/index.rst
 
-For an overview of creating and interacting with smart contracts and transactions via the web3.js library, please refer to the section :ref:`Accessing Contracts and Transactions`.
+通过web3.js库新建和操作智能合约与交易的简介，可参见 :ref:`Accessing Contracts and Transactions` 。
