@@ -6,18 +6,17 @@ Nethereum
 
 **Nethereum**
 
-Nethereum is the .Net integration library for Ethereum, it allows you to interact with Ethereum clients like :ref:`go-ethereum`, :ref:`cpp-ethereum` or :ref:`Parity` using RPC.
+Nethereum是一个Ethereum的.Net集成库，该库可以通过RPC与Ethereum客户端（如: :ref:`go-ethereum`, :ref:`cpp-ethereum` 或 :ref:`Parity` ）进行交互。
 
-The library has very similar functionality as the Javascript Etherum Web3 RPC Client Library.
+这个库与 Javascript Etherum Web3 RPC 客户端库的功能相近。
 
-All the JSON RPC/IPC methods are implemented as they appear in new versions of the clients.
+在新版客户端中出现的所有的JSON RPC/IPC方法都被实现了。
 
-The geth client is the one that is closely supported and tested, including its management extensions for admin, personal, debugging, miner.
+geth客户端经过了紧密的支持和测试，包括它的管理员、个性化、调试、挖矿的管理扩展。
 
-Interaction with contracts has been simplified for deployment, function calling, transaction and event filtering and decoding of topics.
+与合约进行交互进行了简化，以适应部署，功能调用，交互，事件过滤和主题译码。
 
-The library has been tested in all the platforms .Net Core, Mono, Linux, iOS, Android, Raspberry PI, Xbox and of course Windows.
-
+库已经在所有的平台中经过了测试，包括.Net Core, Mono, Linux, iOS, Android, Raspberry PI, Xbox以及Windows。
 
 Links:
 
