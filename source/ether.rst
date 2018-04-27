@@ -2,18 +2,15 @@
 Ether
 ********************************************************************************
 
-What is ether?
+以太币是什么?
 ================================================================================
 
-Ether is the name of the currency used within Ethereum. It is used to pay for
-computation within the EVM. This is done indirectly by purchasing gas for ether as explained in _`gas`.
+以太币是以太坊中使用的货币名称，用于在以太坊虚拟机内支付计算。这通过为以太币购买gas间接实现，详见 _`gas` 。
 
-Denominations
+面额
 --------------------------------------------------------
 
-Ethereum has a metric system of denominations used as units of ether. Each denomination has its own unique name (some bear the family name of seminal figures playing a role in evolution of computer science and cryptoeconomics). The smallest denomination aka *base unit* of ether is called Wei. Below is a list of the named denominations and
-their value in Wei. Following a common (although somewhat ambiguous) pattern, ether also designates a unit (of 1e18 or one quintillion Wei) of the currency. Note that the currency is not called Ethereum as many mistakenly think, nor is Ethereum a unit.
-
+以太坊有一个面额的度量体系，用作以太币单位。每个面额都有自己独特的名字（有的是在计算机科学与加密经济学演进过程中发挥开创性作用的人物的姓）。最小的面额也就是以太币 *基础单位* ，叫做Wei。下面的列表是面额名称以及Wei的价值转换。以太币遵循惯例（尽管有些模棱两可），指定了货币单位（1e18或者百万的三次方Wei）。注意很多人误以为货币叫以太坊，但以太坊并不是货币单位。
 
 +-------------------------+-----------+-------------------------------------------+
 | Unit                    | Wei Value | Wei                                       |
@@ -34,7 +31,7 @@ their value in Wei. Following a common (although somewhat ambiguous) pattern, et
 +-------------------------+-----------+-------------------------------------------+
 
 
-Ether supply
+以太币供应
 =========================
 
 * https://blog.ethereum.org/2014/04/10/the-issuance-model-in-ethereum/
@@ -43,17 +40,17 @@ Ether supply
 * https://www.reddit.com/r/ethtrader/comments/48yqg6/is_there_a_cap_like_with_btc_with_how_many_ether/
 
 
-Getting ether
+获取以太币
 ================================================================================
 
-Please see this page `here <https://github.com/ethereum/wiki/wiki/Getting-Ether>`_.
+请参见 `该页面 <https://github.com/ethereum/wiki/wiki/Getting-Ether>`_.
 
-Sending ether
+发送以太币
 ================================================================================
 
-The `Ethereum Wallet  <https://github.com/ethereum/mist/releases>`_  supports sending ether via a graphical interface.
+`以太坊钱包 <https://github.com/ethereum/mist/releases>`_ 支持通过图像界面发送以太币。
 
-Ether can also be transferred using the **geth console**.
+以太币也可以用 **geth** 控制台转换。
 
 .. code-block:: console
 
@@ -62,25 +59,24 @@ Ether can also be transferred using the **geth console**.
     > var amount = web3.toWei(0.01, "ether")
     > eth.sendTransaction({from:sender, to:receiver, value: amount})
 
-For more information of ether transfer transactions, see :ref:`account-types-gas-and-transactions`.
+了解更多以太币转移交易，请参考 :ref:`account-types-gas-and-transactions` 。
 
-Ethereum is unique in the realm of cryptocurrencies in that ether has utility value as a cryptofuel, commonly referred to as "gas". Beyond transaction fees, gas is a central part of every network request and requires the sender to pay for the computing resources consumed. The gas cost is dynamically calculated, based on the volume and complexity of the request and multiplied by the current gas price. Its value as a cryptofuel has the effect of increasing the stability and long-term  demand for ether and Ethereum as a whole. For more information, see :ref:`account-types-gas-and-transactions`.
+以太坊在加密货币领域是独一无二的，原因在于以太币作为加密燃料具有实用价值，通常被称作"gas"。除交易费用外，gas是每个网络请求的中心部分，需要发送者为消费的运算资源付费。Gas成本是基于请求规模和复杂性的动态计算，乘以现在的gas价格。它作为加密燃料的价值能够增加以太币和以太坊作为一个整体的稳定性和长期需求。了解更多信息，请参考 :ref:`account-types-gas-and-transactions` 。
 
-Gas and ether
+Gas和以太币
 =============================
 
 * https://www.reddit.com/r/ethereum/comments/271qdz/can_someone_explain_the_concept_of_gas_in_ethereum/
 * https://www.reddit.com/r/ethereum/comments/3fnpr1/can_someone_possibly_explain_the_concept_of/
 * https://www.reddit.com/r/ethereum/comments/49gol3/can_ether_be_used_as_a_currency_eli5_ether_gas/
 
+Gas被认为是网络资源/使用的固定成本。想要发送交易的真实成本保持一致，所以不希望gas发行，一般来说货币是不稳定的。
 
-Gas is supposed to be the constant cost of network resources/utilisation. You want the real cost of sending a transaction to always be the same, so you can't really expect Gas to be issued, currencies in general are volatile.
+因此我们发行以太币，它的价值会变动，但也会根据以太币来执行gas价格换算。如果以太币价格上升，gas价格换算成以太币会下降，以此来保持gas的真实花费相同。
 
-So instead, we issue ether whose value is supposed to vary, but also implement a Gas Price in terms of Ether. If the price of ether goes up, the Gas Price in terms of ether should go down to keep the real cost of Gas the same.
+gas有多个相关词汇：gas成本，gas限制和gas费用。gas背后遵循的原则是使以太坊网络上每个交易或计算成本保持稳定的价值。
 
-Gas has multiple associated terms with it: Gas Prices, Gas Cost, Gas Limit, and Gas Fees. The principle behind Gas is to have a stable value for how much a transaction or computation costs on the Ethereum network.
-
-* Gas Cost is a static value for how much a computation costs in terms of Gas, and the intent is that the real value of the Gas never changes, so this cost should always stay stable over time.
-* Gas Price is how much Gas costs in terms of another currency or token like Ether. To stabilise the value of gas, the Gas Price is a floating value such that if the cost of tokens or currency fluctuates, the Gas Price changes to keep the same real value. The Gas Price is set by the equilibrium price of how much users are willing to spend, and how much processing nodes are willing to accept.
-* Gas Limit is the maximum amount of Gas that can be used per block, it is considered the maximum computational load, transaction volume, or block size of a block, and miners can slowly change this value over time.
-* Gas Fee is effectively the amount of Gas needed to be paid to run a particular transaction or program (called a contract). The Gas Fees of a block can be used to imply the computational load, transaction volume, or size of a block. The gas fees are paid to the miners (or bonded contractors in PoS).
+* gas成本是静态值，是以gas为单位的计算成本，目的是保持gas的真实价值不变，所以这个成本会一直稳定。
+* gas价格是以另一货币或代币比如说以太币为单位的gas成本。为了保持gas价值稳定，gas价格是浮动值，如果代币或货币成本波动，gas价格也会变化以保持同样的真实价值。Gas价格的设定是根据多少用户愿意花费和多少进程节点愿意接受的平衡价格。
+* Gas限制是每个区块能使用的gas最大限额，被视为计算工作量，交易量和区块大小的最大值，矿工可以随着时间慢慢改变这个值。
+* gas费用是运行一个特别的交易或程序（被称作合约）所需的gas。 一个区块的gas费用可以用来暗示计算工作量，交易量和区块大小。gas费用支付给矿工（或PoS中的担保承包人） 。
