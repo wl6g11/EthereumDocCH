@@ -1,102 +1,92 @@
 .. _mining:
 
 ********************************************************************************
-Mining
+挖矿
 ********************************************************************************
 
-Introduction
+简介
 ================================================================================
 
-The word mining originates in the context of the gold analogy for crypto currencies. Gold or precious metals are scarce, so are digital tokens, and the only way to increase the total volume is through mining. This is appropriate to the extent that in Ethereum too, the only mode of issuance post launch is via mining. Unlike these examples however, mining is also the way to secure the network by creating, verifying, publishing and propagating blocks in the blockchain.
+挖矿这个词源于对加密货币与黄金的类比。黄金或贵金属很稀有，电子代币也是，增加总量的唯一方法就是挖矿。以太坊也是这样，发行的唯一办法就是挖矿。但是不像其他例子，挖矿也是通过在区块链中创建、验证、发行和传播区块来保护网络的方法。
 
-- Mining ether = Securing the Network = Verifying Computation
+- 挖以太币 = 保护网络 = 验证计算
 
-What is mining?
+什么是挖矿?
+--------------------------------------------------------------------------------
+以太坊，和所有区块链技术一样，使用激励驱动的安全模式。共识基于选择具有最高总难度的区块。矿工创造区块，其他人检测有效性。区块只有在包含特定 **难度** 的 **工作量** (POW)时才有效，还有其他合格性条件。请注意到以太坊Serenity里程碑，可能就会被取代（参考 :ref:`proof of stake model <POS vs POW>` ）。
+
+以太坊区块链在很多方面与比特币区块链类似，但也有些不同。在区块链架构方面，以太坊和比特币之间最主要的的区别是，不像比特币，以太坊区块不仅包含交易列表也包含最近状态（merkle patricia trie结构的根hash编码在状态中更精确）除此之外，另外两个值，区块数和难度，也储存在区块中。
+
+使用的工作量证明算法叫 `Ethash <https://github.com/ethereum/wiki/wiki/Ethash>`_ （ `Dagger-Hashimoto algorithm <https://github.com/ethereum/wiki/wiki/Dagger-Hashimoto>`_ 的改良版本），包括找到算法的 **随机数** 输入以使结果低于特定的难度阈值。工作量证明算法的意义在于，要找到这样一个随机数，没有比列举可能性更好的策略，而解决方法的验证琐碎又廉价。由于输出有均匀分布（是散表功能应用的结果），我们可以保证，平均而言，需要找到这样一个随机数的时间取决于难度阈值。这使得只通过操纵难度来控制找到新区块的时间成为可能。
+
+正如协议中所描述的，难度动态调整的方式是每15秒整个网络会产生一个区块。我们说网络用 **15秒区块时间** 生产一个区块链。这个"心跳"基本上主要强调系统状态同步，保证不可能维持一个分叉（允许double spend）或被恶意分子重写历史，除非攻击者有半数以上的网络挖矿能力（即所谓的 **51%** 攻击）。
+
+任何参与到网络的节点都可能是矿工，预期的挖矿收益和他们的（相对）挖矿能力或者说 *hashrate* 成正比，比如被网络总散表率标准化的，每秒尝试的随机数数量。
+
+Ethash工作量证明是 **内存难解** 的，这使它能 **抵抗ASIC** 。内存难解性由工作量证明算法实现，需要选择依靠随机数和区块标题的固定资源的子集合。这个资源（几十亿字节大小的数据）叫做 **DAG** 。每3000个区块的 `DAG <https://github.com/ethereum/wiki/wiki/Ethash-DAG>`_ 完全不同，125小时的窗口叫做 **epoch**（大约5.2天），需要一点时间来生成。由于DAG只由区块高度决定，它可以被事先生成，如果没有被事先生成，客户端需要等到进程最后来生产区块。如果客户端没有预生成并提前缓存DAG，网络可能会在每个epoch过渡经历大规模区块延迟。注意不必要生成DAG以验证工作量证明，它可以在低CPU和小内存的状态下被验证。
+
+在特殊情况下，从零开始创建节点的时候，只有在为现存epoch创建DAG的时候才会开始挖矿。
+
+挖矿奖励
 --------------------------------------------------------------------------------
 
-Ethereum, like all blockchain technologies, uses an incentive-driven model of security. Consensus is based on choosing the block with the highest total difficulty. Miners produce blocks which the others check for validity. Among other well-formedness criteria, a block is only valid if it contains *proof of work* (PoW) of a given *difficulty*. Note that in the Ethereum Serenity milestone, this is likely going to be replaced by a  (see :ref:`proof of stake model <POS vs POW>` ).
+获奖区块的成功工作量证明矿工会获得：
 
-The Ethereum blockchain is in many ways similar to the Bitcoin blockchain, although it does have some differences. The main difference between Ethereum and Bitcoin with regard to the blockchain architecture is that, unlike Bitcoin, Ethereum blocks contain a copy of both the transaction list and the most recent state (the root hash of the merkle patricia trie encoding the state to be more precise). Aside from that, two other values, the block number and the difficulty, are also stored in the block.
+* "获胜"区块的 *静态区块奖* ，包含5.0个以太币
+* 区块内支出的gas成本 — 一定数量的以太币，取决于当前gas价格
+* 叔伯块的额外奖励，形式是每个叔伯块包含额外的1/32
 
-The proof of work algorithm used is called `Ethash <https://github.com/ethereum/wiki/wiki/Ethash>`_ (a modified version of `the Dagger-Hashimoto algorithm <https://github.com/ethereum/wiki/wiki/Dagger-Hashimoto>`_) and involves finding a *nonce* input to the algorithm so that the result is below a certain difficulty threshold. The point in PoW algorithms is that there is no better strategy to find such a nonce than enumerating the possibilities, while verification of a solution is trivial and cheap. Since outputs have a uniform distribution (as they are the result of the application of a hash function), we can guarantee that, on average, the time needed to find such a nonce depends on the difficulty threshold. This makes it possible to control the time of finding a new block just by manipulating the difficulty.
+在区块中执行所有交易所消费的、由获胜矿工提交的gas都由每个交易的发送者支付。已发生的gas成本归到矿工账户作为共识协议的一部分。随着时间变化，这会使数据区块奖变得矮小。
 
-As dictated by the protocol, the difficulty dynamically adjusts in such a way that on average one block is produced by the entire network every 15 seconds. We say that the network produces a blockchain with a *15 second block time*.
-This "heartbeat" basically punctuates the synchronisation of system state
-and guarantees that maintaining a fork (to allow double spend) or
-rewriting history by malicious actors are impossible unless the attacker possesses more than half of the network mining power (this is the so called *51% attack*).
-
-Any node participating in the network can be a miner and their expected revenue from mining will be directly proportional to their (relative) mining power or *hashrate*, i.e., the number of nonces tried per second normalised by the total hashrate of the network.
-
-Ethash PoW is *memory hard*, making it *ASIC resistant*. Memory hardness is achieved with a proof of work algorithm that requires choosing subsets of a fixed resource dependent on the nonce and block header. This resource (a few gigabyte size data) is called a **DAG**. The `DAG <https://github.com/ethereum/wiki/wiki/Ethash-DAG>`_ is totally different every 30000 blocks, a 125-hour window called *epoch* (roughly 5.2 days) and takes a while to generate. Since the DAG only depends on block height, it can be pregenerated but if its not, the client needs to wait until the end of this process to produce a block. If clients do not pregenerate and cache DAGs ahead of time the network may experience massive block delay on each epoch transition. Note that the DAG does not need to be generated for verifying the PoW essentially allowing for verification with both low CPU and small memory.
-
-As a special case, when you start up your node from scratch, mining will only start once the DAG is built for the current epoch.
-
-Mining rewards
---------------------------------------------------------------------------------
-
-The successful PoW miner of the winning block receives:
-
-* a *static block reward* for the 'winning' block, consisting of exactly 5.0 Ether
-* cost of the gas expended within the block – an amount of ether that depends on the current gas price
-* an extra reward for including uncles as part of the block, in the form of an extra 1/32 per uncle included
-
-All the gas consumed by the execution of all the transactions in the block submitted by the winning miner is paid by the senders of each transaction. The gas cost incurred is credited to the miner's account as part of the consensus protocol. Over time, it is expected these will dwarf the static block reward.
-
-*Uncles* are stale blocks i.e. with parents that are ancestors (max 6 blocks back) of the including block. Valid uncles are rewarded in order to neutralise the effect of network lag on the dispersion of mining rewards, thereby increasing security (this is called the GHOST protocol). Uncles included in a block formed by the successful PoW miner receive 7/8 of the static block reward (=4.375 ether). A maximum of 2 uncles are allowed per block.
+*叔伯块* 是稳定的区块，比如说，和包含先前区块（最多回6个区块）的父区块。有效的叔伯块会受到奖励以中和网络滞后给挖矿奖励带来的影响，因而提升安全性（这叫做GHOST协议）。叔伯块由成功工作量证明矿工形成的区块中所包含的叔伯块接收7/8的数据区块奖励（=4.375以太币）。每个区块最多允许2个叔伯块。
 
     * `Uncles ELI5 on reddit <https://www.reddit.com/r/ethereum/comments/3c9jbf/wtf_are_uncles_and_why_do_they_matter/>`_
     * `Forum thread explaining uncles <https://forum.ethereum.org/discussion/2262/eli5-whats-an-uncle-in-ethereum-mining>`_
 
-
-Mining success depends on the set block difficulty. Block difficulty dynamically adjusts each block in order to regulate the network hashing power to produce a 12 second blocktime. Your chances of finding a block therefore follows from your hashrate relative to difficulty.
+挖矿的成功取决于设定的区块难度。区块难度动态调整每个区块，以规定网络散列能力来创造12秒区块时间。找到区块的机会因此由与难度相关的散列率产生。
 
 Ethash DAG
 --------------------------------------------------------------------------------
+Ethash将 *DAG*（有向非循环图）用于工作量证明算法，这是为每个 *epoch* 生成，例如，每3000个区块（125个小时，大约5.2天）。DAG要花很长时间生成。如果客户端只是按需要生成它，那么在找到新epoch第一个区块之前，每个epoch过渡都要等待很长时间。然而，DAG只取决于区块数量，所以可以预先计算来避免在每个epoch过渡过长的等待时间。 ``Geth`` 和 ``ethminer`` 执行自动的DAG生成，每次维持2个DAG以便epoch过渡流畅。挖矿从控制台操控的时候，自动DAG生成会被打开和关闭。如果 ``geth`` 用 ``--mine`` 选项启动的时候，也会默认打开。注意客户端分享DAG资源，如果你运行任何客户端的多个实例，确保自动的DAG生成只在一个实例中打开。
 
-Ethash uses a *DAG* (directed acyclic graph) for the proof of work algorithm, this is generated for each *epoch*, i.e., every 30000 blocks (125 hours, ca. 5.2 days). The DAG takes a long time to generate. If clients only generate it on demand, you may see a long wait at each epoch transition before the first block of the new epoch is found. However, the DAG only depends on the block number, so it can and should be calculated in advance to avoid long wait times at each epoch transition. Both ``geth`` and ``ethminer`` implement automatic DAG generation and maintains two DAGs at a time for smooth epoch transitions. Automatic DAG generation is turned on and off when mining is controlled from the console. It is also turned on by default if ``geth`` is launched with the ``--mine`` option. Note that clients share a DAG resource, so if you are running multiple instances of any client, make sure automatic dag generation is switched off in all but one instance.
-
-To generate the DAG for an arbitrary epoch:
+为任意epoch生成DAG：
 
 .. code-block:: bash
 
     geth makedag <block number> <outputdir>
 
-For instance ``geth makedag 360000 ~/.ethash``. Note that ethash uses
-``~/.ethash`` (Mac/Linux) or ``~/AppData/Ethash`` (Windows) for the DAG
-so that it can shared between different client implementations as well as multiple running instances.
+例如 ``geth makedag 360000 ~/.ethash`` 。请注意ethash为DAG使用 ``~/.ethash`` (Mac/Linux) 或 ``~/AppData/Ethash`` (Windows)，这样它可以在不同的客户端实现以及多个运行实例中分享。
 
-The algorithm
+算法
 ================================================================================
 
-Our algorithm, `Ethash <https://github.com/ethereum/wiki/wiki/Ethash>`__ (previously known as Dagger-Hashimoto), is based around the provision of a large, transient, randomly generated dataset which forms a DAG (the Dagger-part), and attempting to solve a particular constraint on it, partly determined through a block's header-hash.
+我们的算法， `Ethash <https://github.com/ethereum/wiki/wiki/Ethash>`_ （之前被称为Dagger-Hashimoto），是基于一个大的、瞬时的、任意生成的、形成DAG（Dagger-part）的资料组规定，尝试解决它一个特定的约束，部分通过区块标题散列来决定。
 
-It is designed to hash a fast verifiability time within a slow CPU-only environment, yet provide vast speed-ups for mining when provided with a large amount of memory with high-bandwidth. The large memory requirements mean that large-scale miners get comparatively little super-linear benefit. The high bandwidth requirement means that a speed-up from piling on many super-fast processing units sharing the same memory gives little benefit over a single unit. This is important in that pool mining have no benefit for nodes doing verification, thus discourageing centralisation.
+它被设计用于在一个只有慢CPU的环境中来散列快速验证时间，但在被提供大量高带宽内存时，为挖矿提供大量的加速。大量内存需求意味着大规模矿工获得相对少的超线性利益。高带宽需求意味着从堆在很多超速处理单元、分享同样内存的加速在每个单独的单元给出很少的利益。没有节点验证的利益因而阻碍中心化，这在挖矿中很重要。
 
-Communication between the external mining application and the Ethereum daemon for work provision and submission happens through the JSON-RPC API. Two RPC functions are provided; ``eth_getWork`` and ``eth_submitWork``.
+外部挖矿应用和以太坊工作规定和报送的后台程序之间的交流通过JSON-RPC API发生。提供两个RPC功能； ``eth_getWork`` 和 ``eth_submitWork`` 。
 
-These are formally documented on the `JSON-RPC API <https://github.com/ethereum/wiki/wiki/JSON-RPC>`_ wiki article under `miner <https://github.com/ethereum/go-ethereum/wiki/JavaScript-Console#miner>`_.
+这些被正式记录在维基百科文章 `miner <https://github.com/ethereum/go-ethereum/wiki/JavaScript-Console#miner>`_ 的 `JSON-RPC API <https://github.com/ethereum/wiki/wiki/JSON-RPC>`_ 条目下。
 
+为了挖矿你需要一个完全同步的、能够挖矿的以太坊客户端和至少一个以太坊账户。这个账户用于发送挖矿奖励，通常被称为 **货币基** 或 **以太基** 。查看 ":ref:`creating_an_account`" 章节，学习如何创建帐户。
 
-In order to mine you need a fully synced Ethereum client that is enabled for mining and at least one ethereum account. This account is used to send the mining rewards to and is often referred to as *coinbase* or *etherbase*. Visit the ":ref:`creating_an_account`" section of this guide to learn how to create an account.
+.. warning:: 开始挖矿前，确保区块链和主链完全同步，否则就不能在主链上挖矿。
 
-.. warning:: Ensure your blockchain is fully synchronised with the main chain before starting to mine, otherwise you will not be mining on the main chain.
-
-CPU mining
+CPU 挖矿
 ================================================================================
 
-You can use your computer's central processing unit (CPU) to mine ether. This is no longer profitable, since GPU miners are roughly two orders of magnitude more efficient. However, you can use CPU mining to mine on the Morden testnet or a private chain for the purposes of creating the ether you need to test contracts and transactions without spending your real ether on the live network.
+你可以用电脑的中央处理器（CPU）挖以太币。自从GPU矿工的效率高出两个数量级，它就不再盈利了。然而你可以用CPU挖掘在Morden测试网或私有链上挖矿，以便创建你测试合约和交易所需要的以太币， 而无需花费实时网络上的真实以太币。
 
-.. note:: The testnet ether has no value other than using it for testing purposes (see :ref:`test-networks`).
+.. note:: 测试网以太币除了用于测试目的外没有其他价值（查看 :ref:`test-networks` ）。
 
-Using geth
--------------------------------
-When you start up your ethereum node with ``geth`` it is not mining by
-default. To start it in CPU mining mode, you use the ``--mine`` `command line option <https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options>`__.
-The ``-minerthreads`` parameter can be used to set the number parallel mining threads (defaulting to the total number of processor cores).
+使用geth
+--------------------------------------------------------------------------------
+
+用 ``geth`` 启动以太坊节点时，并不是默认挖掘。在CPU挖掘模式开启，你会用 ``--mine`` `命令行选项 <https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options>`_ 。 ``--minerthreads`` 参数可以用于设置平行于挖掘线程的数量（默认为处理器核心的总数）。
 
 ``geth --mine --minerthreads=4``
 
-You can also start and stop CPU mining at runtime using the `console <https://github.com/ethereum/go-ethereum/wiki/JavaScript-Console#adminminerstart>`__. ``miner.start`` takes an optional parameter for the number of miner threads.
+你也可以在执行期间用 `console <https://github.com/ethereum/go-ethereum/wiki/JavaScript-Console#adminminerstart>`_ 开启或停止CPU挖掘。 ``miner.start`` 取一个矿工线程数量的可选参数。
 
 .. code-block:: Javascript
 
@@ -105,26 +95,26 @@ You can also start and stop CPU mining at runtime using the `console <https://gi
     > miner.stop()
     true
 
-Note that mining for real ether only makes sense if you are in sync with the network (since you mine on top of the consensus block). Therefore the eth blockchain downloader/synchroniser will delay mining until syncing is complete, and after that mining automatically starts unless you cancel your intention with ``miner.stop()``.
+注意挖掘真实以太币只有在你与网络同步时才有意义（由于你是在共识区块顶部挖矿）。因此以太区块链下载器/同步器会延迟挖掘直到同步完成，此后挖掘自动开始，除非你用 ``miner.stop()`` 取消挖矿。
 
-In order to earn ether you must have your **etherbase** (or **coinbase**) address set. This etherbase defaults to your primary account. If you don't have an etherbase address, then ``geth --mine`` will not start up.
+为了赚取以太币，你必须有 **etherbase** （或 **coinbase** ）地址集。这个etherbase默认为你的第一个账户。如果你没有etherbase地址， ``geth --mine``就不会开启。
 
-You can set your etherbase on the command line:
+你可以在命令行重新设置etherbase：
 
 .. code-block:: bash
 
     geth --etherbase 1 --mine  2>> geth.log // 1 is index: second account by creation order OR
     geth --etherbase '0xa4d8e9cae4d04b093aac82e6cd355b6b963fb7ff' --mine 2>> geth.log
 
-You can reset your etherbase on the console too:
+你也可以在控制台重新设置etherbase：
 
 .. code-block:: javascript
 
     miner.setEtherbase(eth.accounts[2])
 
-Note that your etherbase does not need to be an address of a local account, just an existing one.
+注意你的etherbase不必是本地账户地址，只要是现存的就可以。
 
-There is an option `to add extra Data <https://github.com/ethereum/go-ethereum/wiki/JavaScript-Console#minersetextra>`__ (32 bytes only) to your mined blocks. By convention this is interpreted as a unicode string, so you can set your short vanity tag.
+有一个给你挖掘过的区块 `添加额外数据 <https://github.com/ethereum/go-ethereum/wiki/JavaScript-Console#minersetextra>`_ （只有32字节）的选项。按照惯例，它被解释为统一码字符串，你可以设置短期虚荣标签。
 
 .. code-block:: javascript
 
@@ -142,21 +132,21 @@ There is an option `to add extra Data <https://github.com/ethereum/go-ethereum/w
     ...
     }
 
-You can check your hashrate with `miner.hashrate <https://github.com/ethereum/go-ethereum/wiki/JavaScript-Console#adminminerhashrate>`_, the result is in H/s (Hash operations per second).
+你可以用 `miner.hashrate <https://github.com/ethereum/go-ethereum/wiki/JavaScript-Console#adminminerhashrate>`_ 检查算力，结果用H/s表示（每秒hash操作）。
 
 .. code-block:: javascript
 
     > miner.hashrate
     712000
 
-After you successfully mined some blocks, you can check the ether balance of your etherbase account. Now assuming your etherbase is a local account:
+成功挖掘一些区块以后，你可以检查etherbase账户中的以太币余额。现在假定你的etherbase是个本地账户：
 
 .. code-block:: javascript
 
     > eth.getBalance(eth.coinbase).toNumber();
     '34698870000000'
 
-In order to spend your earnings on gas to transact, you will need to have this account unlocked.
+为了花费你赚的gas来交易，你需要解锁账户。
 
 .. code-block:: javascript
 
@@ -164,7 +154,7 @@ In order to spend your earnings on gas to transact, you will need to have this a
     Password
     true
 
-You can check which blocks are mined by a particular miner (address) with the following code snippet on the console:
+你可以在控制台上用以下代码片段，检查哪个区块被特殊的矿工（地址）挖掘过：
 
 .. code-block:: javascript
 
@@ -186,36 +176,33 @@ You can check which blocks are mined by a particular miner (address) with the fo
     minedBlocks(1000, eth.coinbase);
     //[352708, 352655, 352559]
 
-Note that it will happen often that you find a block yet it never makes it to the canonical chain. This means when you locally include your mined block, the current state will show the mining reward credited to your account, however, after a while, the better chain is discovered and we switch to a chain in which your block is not included and therefore no mining reward is credited. Therefore it is quite possible that as a miner monitoring their coinbase balance will find that it may fluctuate quite a bit.
+请注意，发现一个区块但是不能把它变成典型链会经常发生。这意味着你在当地把挖过的区块包括在内，当前的状态会显示归于你账户的挖矿奖励，然而不久后，会发现更好的链，我们转换到不包含你区块的链，因而不会记入任何挖矿奖励。因此很有可能矿工监控coinbase余额的时候会发现，它发生了相当程度的浮动。
 
-GPU mining
+GPU挖矿
 ================================================================================
 
-Hardware
--------------------------------
+硬件
+--------------------------------------------------------------------------------
 
-The algorithm is memory hard and in order to fit the DAG into memory, it needs 1-2GB of RAM on each GPU. If you get ``Error GPU mining. GPU memory fragmentation?`` you do not have enough memory.
-The GPU miner is implemented in OpenCL, so AMD GPUs will be 'faster' than same-category NVIDIA GPUs.
-ASICs and FPGAs are relatively inefficient and therefore discouraged.
-To get openCL for your chipset and platform, try:
+算法是内存难解的，为了使DAG适合内存，每个GPU需要1-2GB内存，如果你得到错误提示： ``Error GPU mining. GPU memory fragmentation?`` 说明你没有足够的内存。GPU挖矿软件是基于OpenCL实现的，AMD GPU会比同一水准的NVIDIA GPU“更快”。ASIC和FPGA相对低效因而被阻拦。要给芯片集成平台获取openCL，尝试：
 
 - `AMD SDK openCL <http://developer.amd.com/tools-and-sdks/opencl-zone/amd-accelerated-parallel-processing-app-sdk>`_
 - `NVIDIA CUDA openCL <https://developer.nvidia.com/cuda-downloads>`_
 
-Ubuntu Linux set-up
+Ubuntu Linux设置
 -------------------------
 
-For this quick guide, you'll need Ubuntu 14.04 or 15.04 and the fglrx graphics drivers. You can use NVidia drivers and other platforms, too, but you'll have to find your own way to getting a working OpenCL install with them, such as `Genoil's ethminer fork <http://cryptomining-blog.com/tag/ethminer/>`_.
+对于这个快速指南，你会需要Ubuntu 14.04或15.04以及fglrx图像驱动器。你也可以使用NVidia驱动器和其他平台，但是你必须要找到自己的方式来获得有效的OpenCL安装，比如 `Genoil's ethminer fork <http://cryptomining-blog.com/tag/ethminer/>`_ 。
 
-If you're on 15.04, Go to "Software and Updates > Additional Drivers" and set it to "Using video drivers for the AMD graphics accelerator from fglrx".
+如果你在用15.04，转到"软件与更新 > 额外的驱动器"设置为"从fglrx为AMD图形加速器使用视频驱动器"。
 
-If you're on 14.04, go to "Software and Updates > Additional Drivers" and set it to "Using video drivers for the AMD graphics accelerator from fglrx". Unfortunately, for some of you this will not work due to a known bug in Ubuntu 14.04.02 preventing you from switching to the proprietary graphics drivers required to GPU mine.
+如果你在用14.04，转到"软件与更新 > 额外的驱动器"设置为"从fglrx为AMD图形加速器使用视频驱动器"。很遗憾，对于一些人来说，这种方法可能不管用，因为Ubuntu 14.04.02中有个已知的程序错误会阻止你转换到GPU挖矿所必须的专属图形驱动器。
 
-So, if you encounter this bug, and before you do anything else, go to "Software and updates > Updates" and select "Pre-released updates trusty proposed". Then, go back to "Software and Updates > Additional Drivers" and set it to "Using video drivers for the AMD graphics accelerator from fglrx"). After rebooting, it's well worth having a check that the drivers have now indeed been installed correctly (For example by going to "Additional Drivers" again).
+所以，如果你遇到这个程序错误，先到"软件与更新 > 更新"选择"预发行的可靠更新提议"。然后，回到"软件与更新 > 额外的驱动器"设置为"从fglrx为AMD图形加速器使用视频驱动器"。重启之后，值得检查一下现在确实正确安装了驱动器（例如通过再到"额外驱动器"）。
 
-Whatever you do, if you are on 14.04.02 do not alter the drivers or the drivers configuration once set. For example, the usage of aticonfig --initial (especially with the -f, --force option) can 'break' your setup. If you accidentally alter their configuration, you'll need to de-install the drivers, reboot, reinstall the drivers and reboot.
+不管做什么，如果你在用14.04.02，一旦安装之后，就不要改变驱动器或者驱动器配置。例如，aticonfig –-initial的使用（尤其是-f, –-force选项）会"破坏"你的设置。如果你偶然改变了配置，会需要卸载驱动器，重启，再次安装驱动器并重启。
 
-Mac set-up
+Mac设置
 -------------------------------
 
 .. code-block:: bash
@@ -226,22 +213,23 @@ Mac set-up
  brew tap ethereum/ethereum
  brew reinstall cpp-ethereum --with-gpu-mining --devel --headless --build-from-source
 
-You check your cooling status:
+查看冷却状态：
 
 .. code-block:: bash
 
   aticonfig --adapter=0 --od-gettemperature
 
-Windows set-up
+Windows设置
 -------------------------------
-`Download the latest Eth\+\+ installation <https://github.com/ethereum-mining/ethminer/releases>`_ and choose ethminer at the "Choose Components" screen of the installation screen.
+
+`下载最新的Eth++安装包 <https://github.com/ethereum-mining/ethminer/releases>`_ ，在安装界面的"选择组件"页面选择ethminer。
 
 ..  image:: img/eth_miner_setup.png
 ..   :height: 513px
 ..   :width: 399 px
    :alt: ethereum-ethminer-set-upfdg
 
-Using ethminer with geth
+用geth使用ethminer
 -------------------------------
 
 .. code-block:: bash
@@ -251,11 +239,11 @@ Using ethminer with geth
     ethminer -G  // -G for GPU, -M for benchmark
     tail -f geth.log
 
-``ethminer`` communicates with geth on port 8545 (the default RPC port in geth). You can change this by giving the ``--rpcport`` option to ``geth``. Ethminer will find geth on any port. Note that you need to set the CORS header with ``--rpccorsdomain localhost``. You can also set port on ``ethminer`` with ``-F http://127.0.0.1:3301``. Setting the ports is necessary if you want several instances mining on the same computer, although this is somewhat pointless. If you are testing on a private chain, we recommend you use CPU mining instead.
+``ethminer`` 在端口8545（geth的默认RPC端口）和geth沟通。你可以通过给 ``geth`` ``--rpcport`` 选项来改变这种情况。ethminer会在任何端口发现geth。注意你需要用 ``--rpccorsdomain localhos`` 设置CORS标题。你也可以用 ``--Fhttp://127.0.0.1:3301`` 在 ``ethminer`` 设置端口。如果你想要在同一个电脑上挖几个实例，设置端口是必需的，尽管有些没有意义。如果你在私有链上测试，我们推荐你用CPU挖掘代替。
 
-.. note:: You do **not** need to give ``geth`` the ``--mine`` option or start the miner in the console unless you want to do CPU mining on TOP of GPU mining.
+.. note:: 你 **不需要** 把 ``--mine`` 选项给 ``geth`` ，或者在控制台开启挖矿，除非你想要在GPU挖掘顶端做CPU挖掘。
 
-If the default for ``ethminer`` does not work try to specify the OpenCL device with: ``--opencl-device X`` where X is {0, 1, 2,...}. When running ``ethminer`` with ``-M`` (benchmark), you should see something like:
+如果 ``ethminer`` 的默认无效，试试用 ``--opencl-device X`` 来规定OpenCL装置，其中X是{0, 1, 2,…}。用 ``-M`` （基础测试程序）运行 ``ethminer`` 时，你会看到如下的提示：
 
 .. code-block:: bash
 
@@ -264,64 +252,62 @@ If the default for ``ethminer`` does not work try to specify the OpenCL device w
 
     Benchmarking on platform: { "platform": "Apple", "device": "Intel(R) Xeon(R) CPU E5-1620 v2 @ 3.70GHz", "version": "OpenCL 1.2 " }
 
-To debug ``geth``:
+调试 ``geth`` :
 
 .. code-block:: bash
 
     geth  --rpccorsdomain "localhost" --verbosity 6 2>> geth.log
 
-To debug the miner:
+调试挖矿:
 
 .. code-block:: bash
 
     make -DCMAKE_BUILD_TYPE=Debug -DETHASHCL=1 -DGUI=0
     gdb --args ethminer -G -M
 
-..  note:: hashrate info is not available in ``geth`` when GPU mining.
+..  note:: GPU挖矿时，散列率信息在 ``geth`` 上不可用。
 
-Check your hashrate with ``ethminer``, ``miner.hashrate`` will always report 0.
+用 ``ethminer`` 检查散列率， ``miner.hashrate`` 总会报告0。
 
-Using ethminer with eth
--------------------------------
+用eth使用ethminer
+--------------------------------------------------
 
-Mining on a single GPU
+在单独的GPU上挖矿
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-In order to mine on a single GPU all that needs to be done is to run eth with the following arguments:
+
+为了在单独的GPU上挖矿，只需要用以下参数运行eth：
 
 .. code-block:: bash
 
  eth -v 1 -a 0xcadb3223d4eebcaa7b40ec5722967ced01cfc8f2 --client-name "OPTIONALNAMEHERE" -x 50 -m on -G
 
-- ``-v 1`` Set verbosity to 1. Let's not get spammed by messages.
-- ``-a YOURWALLETADDRESS`` Set the coinbase, where the mining rewards will go to. The above address is just an example. This argument is really important, make sure to not make a mistake in your wallet address or you will receive no ether payout.
-- ``--client-name "OPTIONAL"`` Set an optional client name to identify you on the network
-- ``-x 50`` Request a high amount of peers. Helps with finding peers in the beginning.
-- ``-m on`` Actually launch with mining on.
-- ``-G`` set GPU mining on.
+- ``-v 1`` 将冗长的信息设置为1。不要被信息刷屏。
+- ``-a YOURWALLETADDRESS`` 设置挖矿奖励会去的coinbase。以上地址只是一个例子。这一参数十分重要，确保不要在钱包地址出错，否则会接收不到以太币支出。
+- ``--client-name "OPTIONAL"`` 设置可选择的客户端名称，在网络上确定身份。
+- ``-x 50`` 请求大量的端点。帮助在开始找到端点。
+- ``-m on`` 在挖矿开启的状态下实际启动。
+- ``-G`` 打开GPU挖掘。
 
-While the client is running you can interact with it using either
-geth attach` or [ethconsole](https://github.com/ethereum/ethereum-console).
+客户端运行时，你可以用geth附属或 `ethconsole <https://github.com/ethereum/ethereum-console>`_ 和它互动。
 
-Mining on a multiple GPUs
+在多个GPU上挖矿
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Mining with multiple GPUs and eth is very similar to mining with geth and multiple GPUs.
-Ensure that an eth node is running with your coinbase address properly set:
+
+用多个GPU和eth挖矿与用geth和多个GPU挖矿十分相似。确保eth节点和正确设置的coinbase地址一起运行：
 
 .. code-block:: bash
 
    eth -v 1 -a 0xcadb3223d4eebcaa7b40ec5722967ced01cfc8f2 --client-name "OPTIONALNAMEHERE" -x 50 -j
 
-Notice that we also added the -j argument so that the client can have the JSON-RPC server enabled to communicate with the ethminer instances. Additionally we removed the mining related arguments since ethminer will now do the mining for us.
-For each of your GPUs execute a different ethminer instance:
+注意我们也添加了-j参数以使客户端有可用的JSON-RPC服务器与ethminer实例沟通。此外由于ethminer可以为我们挖矿，我们移除了与挖矿相关的参数。每个GPU都会执行一个不同的ethminer实例：
 
 .. code-block:: bash
 
    ethminer --no-precompute -G --opencl-device X
 
-Where X is the index number corresponding to the openCL device you want the ethminer to use  {0, 1, 2,...}.
-In order to easily get a list of OpenCL devices you can execute ``ethminer --list-devices`` which will provide a list of all devices OpenCL can detect, with also some additional information per device.
+X是索引号码，与你想ethminer用{0, 1, 2,…}的OpenCL装置一致。为了轻松获取OpenCL装置列表，你可以执行 ``ethminer --list-devices`` ，它会提供一个OpenCL可以检测到的所有装置，以及每个装置的一些附加信息。
 
-Below is a sample output:
+下面是一个示例输出：
 
 .. code-block:: console
 
@@ -331,52 +317,50 @@ Below is a sample output:
      CL_DEVICE_MAX_MEM_ALLOC_SIZE: 1071586304
      CL_DEVICE_MAX_WORK_GROUP_SIZE: 1024
 
-Finally the ``--no-precompute`` argument requests that the ethminers don't create the DAG of the next epoch ahead of time. Although this is not recommended since you'll have a mining interruption every time when there's an epoch transition.
+最终 ``--no-precompute`` 参数请求ethiminers不要提前创建下一个epoch的DAG。尽管不推荐这样，因为每次epoch过渡的时候，你都会有一个挖矿中断。
 
-Benchmarking
+基准测试程序
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Mining power tends to scale with memory bandwidth. Our implementation is written in OpenCL, which is typically supported better by AMD GPUs over NVidia. Empirical evidence confirms that AMD GPUs offer a better mining performance in terms of price than their NVidia counterparts.
 
-To benchmark a single-device setup you can use ethminer in benchmarking mode through the -M option:
+挖矿能力通常以内存带宽衡量。我们的实现写在OpenCL上，很典型地在NVidia上被AMD GPU支持得更好。实验证据确认了在价格方面，AMD GPU比对应的NVidia挖矿表现更好。
+
+用基准程序测试单一装置设置，你可以在基准测试程序模式下通过-M使用ethminer。
 
 .. code-block:: bash
 
    ethminer -G -M
 
-If you have many devices and you'll like to benchmark each individually, you can use the --opencl-device option similarly to the previous section:
+如果你有很多装置，你会喜欢分别用基准程序测试，可以用 ``–opencl-device`` 选项，与之前章节相似:
 
 .. code-block:: bash
 
  ethminer -G -M --opencl-device X
 
-Use ethminer ``--list-devices`` to list possible numbers to substitute for the X {0, 1, 2,...}.
+用 ethminer ``--list-devices`` 来列出可能的数字替代X {0, 1, 2,…}。
 
+开始在Windows上挖矿，首先要 `下载geth windows binary <https://build.ethereum.org/builds/Windows%20Go%20master%20branch/>`_ 。
 
+* 解压缩Geth (单击右键选择打开)，启用命令提示符。用cd导航到Geth数据文件夹的位置(例如 ``cd /`` 到 ``C:`` 盘)。
+* 输入 ``geth --rpc`` 开启geth。
 
-To start mining on Windows, first `download the geth windows binary <https://build.ethereum.org/builds/Windows%20Go%20master%20branch/>`_.
+进入以后，以太坊区块链会开始下载。有时候防火墙肯能会阻止同步进程（阻止时会有提示）。如果被阻止，点击"允许进入"。
 
-* Unzip Geth (right-click and select unpack) and launch Command Prompt. Use `cd` to navigate to the location of the Geth data folder. (e.g. ``cd /`` to go to the ``C:`` drive)
-* Start geth by typing ``geth --rpc``.
+* 首先 `下载安装ethminer <http://cryptomining-blog.com/tag/ethminer-cuda-download/>`_ ， C++挖矿软件 (防火墙或Windows本身可能会有反应，允许进入)。
+* 打开另一个命令提示符 (保持第一个运行！)输入 ``cd/Program\ Files/Ethereum(++)/release`` 改变目录。
+* 确保 ``geth`` 完成区块链同步。如果同步不再进行，就可以在命令提示符输入 ``ethminer -G`` 开启挖矿进程。
 
-As soon as you enter this, the Ethereum blockchain will start downloading. Sometimes your firewall may block the synchronisation process (it will prompt you when doing so). If this is the case, click "Allow access".
+此时可能会出现一些问题。如果有错误发生， 可以输入 ``Ctrl+C`` 来中断矿工。如果错误显示(提示）"内存不足"，就说明没有足够的GPU内存来挖以太币。
 
-* First `download and install ethminer <http://cryptomining-blog.com/tag/ethminer-cuda-download/>`_, the C++ mining software (your firewall or Windows itself may act up, allow access)
-* Open up another Command Prompt (leave the first one running!), change directory by typing ``cd /Program\ Files/Ethereum(++)/release``
-* Now make sure `geth` has finished syncing the blockchain. If it is not syncing any longer, you can start the mining process by typing ``ethminer -G`` at the command prompt
-
-At this point some problems may appear. If you get an error, you can abort the miner by pressing ``Ctrl+C``. If the error says
-"Insufficient Memory", your GPU does not have enough memory to mine ether.
-
-Pool mining
+矿池挖矿
 ================================================================================
 
-Mining pools are cooperatives that aim to smooth out expected revenue by pooling the mining power of participating miners. In return, they usually charge you 0-5% of your mining rewards. The mining pool submits blocks with proof of work from a central account and redistributes the reward to participants in proportion to their contributed mining power.
+矿池挖矿是旨在通过联合参与矿工的挖矿力来解决预期收益问题的合作社（挖矿的矿工的算力来解决预期收益问题的合作组织）。作为回报，通常收取0-5%的挖矿奖励。挖矿池从中央账户用工作量证明提交区块并按照参与人贡献的挖矿力比例来重新分配奖励。
 
-.. warning::  Most mining pools involve third party, central components which means they are not trustless. In other words, pool operators can run away with your earnings. Act with caution. There are a number of trustless, decentralised pools with open source codebase.
+.. warning:: 大多数挖矿池包含第三方，中心组件，意味着他们是不需信任的。换言之，挖矿池操作人可以把你的收入拿走。谨慎操作。有很多具备开源数据库、不需信任的、去中心化的挖矿池。
 
-.. warning:: Mining pools only outsource proof of work calculation, they do not validate blocks or run the VM to check state transitions brought about by executing the transactions. This effectively make pools behave like single nodes in terms of security, so their growth poses a centralisation risk of a `51% attack <https://learncryptography.com/cryptocurrency/51-attack>`_. Make sure you follow the network capacity distribution and do not allow pools to grow too large.
+.. warning:: 挖矿池只会外包工作量证明运算，他们不会使区块生效或运行虚拟机来检查执行交易带来的状态过渡。 这能有效地使挖矿池在安全方面像单个节点一样表现，他们的增长会造成`51% 攻击 <https://learncryptography.com/cryptocurrency/51-attack>`_ 的中心化威胁。确保遵守网络能力分配，不要让挖矿池长得太大。
 
-Mining pools
+矿池
 --------------------------------------------------------------------
 
 * `coinotron`_
@@ -415,7 +399,7 @@ Mining pools
 .. _2miners: https://2miners.com/
 
 
-Mining resources
+挖矿资源
 =======================================================
 
 * `Top miners of last 24h on etherchain <https://etherchain.org/statistics/miners>`_
